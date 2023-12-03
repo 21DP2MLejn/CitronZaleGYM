@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+
+
+:root{
+    --TeaGreen: #C3F3C0;
+    --PastelGreen: #7EE081;
+    --ShinyShamrock: #62A87C;
+    --White: #FFFFFF;
+    --Black: #000;
+    --LightGray: rgb(179, 177, 177);
+    --Gray: rgb(136, 136, 136);
+    --DarkGray: rgb(68, 68, 68);
+
+
+    --Font: 'Poppins';
+
+    --font-light: 300;
+    --font-regular: 400;
+    --font-bold: 600;
+    --font-very-bold: 800;
+
+}
+
+html{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden ;
+}
+
+h1,h2,h3, title{
+    font-family: var(--Font);
+    font-weight: var(--font-regular);
+}
+
+p, th, table, tr{
+    font-family: var(--Font);
+    font-weight: var(--font-light);
+    font-size: 16px;
+}
+
+a{
+  font-family: var(--Font);
+  font-weight: var(--font-regular);
+  font-size: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+input{
+    font-family: var(--Font);
+    font-weight: var(--font-regular);
+}
+
+button{
+    font-family: var(--Font);
+    font-weight: var(--font-regular);
+}
+
+li{
+    font-family: var(--Font);
+    font-weight: var(--font-regular);
+}
