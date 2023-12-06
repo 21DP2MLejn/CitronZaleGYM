@@ -109,7 +109,6 @@ h1{
 }
 
 .card{
-   border-radius: 25px;
    margin: 2rem;
    transition: 0.5s;
    display: flex;

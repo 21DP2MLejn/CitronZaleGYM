@@ -32,7 +32,7 @@ h1,h2,h3, title{
     font-weight: var(--font-regular);
 }
 
-p, th, table, tr{
+p, th, table, tr, label{
     font-family: var(--Font);
     font-weight: var(--font-light);
     font-size: 16px;
