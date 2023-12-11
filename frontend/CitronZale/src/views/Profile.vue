@@ -1,27 +1,30 @@
 <template>
 <main>
-<div class="navbar">
-    <NavBar />
-</div>
-
-<div id="container">
-    <div class="profile-picture">
-    </div>
-    <div class="user-details">
-        <input type="text" class="name" placeholder="Name">
-        <input type="text" class="lastname" placeholder="Last Name">
-        <input type="date" class="birthdate" placeholder="Birthdate">
-    </div>
-    <div class="user-contact">
-        <input type="text" class="email" placeholder="E-mail">
-        <input type="text" class="phone-number" placeholder="Phone Number">
-    </div>
-    <div class="user-guardian">
-        <input type="text" class="guardian-name" placeholder="Guardian Name">
-        <input type="text" class="guardian-lastname" placeholder="Guardian Last Name">
-        <input type="text" class="guardian-email" placeholder="Guardian E-mail">
-        <input type="text" class="guardian-country" placeholder="Country" v-show="country">
-        <button id="choosecountry" @click="ShowCountry">Country</button>
+  <div class="navbar">
+      <NavBar />
+  </div>
+    <div class="main-container">
+      <div id="container">
+        <div class="greetings">
+          <h1>Hello, {{userName}}</h1>  
+        </div>
+        <div class="profile-picture"></div>
+        <div class="user-details">
+            <input type="text" class="name" placeholder="Name">
+            <input type="text" class="lastname" placeholder="Last Name">
+            <input type="date" class="birthdate" placeholder="Birthdate">
+        </div>
+        <div class="user-contact">
+            <input type="text" class="email" placeholder="E-mail">
+            <input type="text" class="phone-number" placeholder="Phone Number">
+        </div>
+        <div class="user-guardian">
+            <input type="text" class="guardian-name" placeholder="Guardian Name">
+            <input type="text" class="guardian-lastname" placeholder="Guardian Last Name">
+            <input type="text" class="guardian-email" placeholder="Guardian E-mail">
+            <input type="text" class="guardian-country" placeholder="Country" v-show="country">
+            <button id="choosecountry" @click="ShowCountry">Country</button>
+        </div>
     </div>
 </div>
 </main>
@@ -36,7 +39,8 @@ export default{
 },
 data(){
     return{
-        country: false
+        country: false,
+        userName: ''
     }
 },
 method:{
@@ -50,6 +54,13 @@ method:{
 </script>
 
 <style scoped>
+
+.main-container{
+  width: 100%;
+  height: 100%;
+  background-color: var(--TeaGreen);
+}
+
 
 .input-container {
   display: flex;
@@ -80,21 +91,17 @@ input:focus {
 }
 
 #container{
-    position: relative;
-    top: 4.2rem;
-    width: 102%;
-    height: 55rem;
-    left: -1rem;
-    background-color: var(--TeaGreen);
-    display: inline-block;
-    align-content: center;
-    justify-content: center;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
 }
 
 
 .profile-picture{
-   width: 15rem;
-   height: 15rem;
+   width: 20rem;
+   height: 20rem;
    background-image: url(../assets/Images/gym_picture5.jpg);
    background-repeat: no-repeat;
    background-size: cover;
@@ -103,7 +110,9 @@ input:focus {
    display: flex;
    justify-content: center;
    align-content: center;
-   border: 0.18rem solid var(--PastelGreen)
+   border: 0.18rem solid var(--PastelGreen);
+   position: relative;
+   left: -10rem;
 }
 
 button {
@@ -139,6 +148,43 @@ button{
     transition: 0.5s;
     position: relative;
     margin: 5px;
+}
+
+.user-details{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  left: 16rem;
+  top: -10rem;
+}
+
+.user-contact{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  left: 16rem;
+  top: -9rem;
+}
+
+.user-guardian{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  left: 16rem;
+  top: -8rem;
+}
+
+h1{
+  font-size: 3rem;
+}
+
+.greetings{
+  position: relative;
+  left: 16rem;
+  top: 5rem;
 }
 
 </style>
