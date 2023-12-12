@@ -28,19 +28,7 @@ export default{
     padding: 1rem;
 }
 
-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
 
-input:focus {
-  border-color: var(--ShinyShamrock);
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-  outline: none; 
-}
 
   button {
   --b: 3px;   
