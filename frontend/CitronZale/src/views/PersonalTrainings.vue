@@ -90,15 +90,20 @@
             <div id="bolderajapersonaltrainer" class="card" v-show="selectedLocation === 'bolderaja' || selectedLocation === 'allclubs'"></div>
         </div>
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
 </main>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
     components:{
         NavBar,
+        Footer,
     },
     data() {
         return {
@@ -132,6 +137,10 @@ export default {
 
 <style scoped>
 
+.footer{
+  position: relative;
+  top: 20rem;
+}
 .trainer-container {
   display: flex;
   flex-direction: column;

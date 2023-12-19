@@ -10,6 +10,9 @@
     <div class="introduction">
       <Introduction />
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -18,6 +21,7 @@
   import ImageSlider from '../components/ImageSlider.vue';
   import Reasons from '../components/Reasons.vue';
   import Introduction from '../components/Introduction.vue';
+  import Footer from '../components/Footer.vue';
   
   export default {
     components: {
@@ -25,6 +29,7 @@
       ImageSlider,
       Reasons,
       Introduction,
+      Footer,
     },
   };
   </script>
@@ -66,6 +71,11 @@ body{
   padding: 0;
   display: flex;
   width: 100vw;
+}
+
+.footer{
+  top: 60rem;
+  position: relative;
 }
 
 </style>

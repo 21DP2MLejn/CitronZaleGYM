@@ -82,15 +82,20 @@
           </div>
         </div>
       </div>
+      <div class="footer">
+        <Footer />
+      </div>
     </main>
   </template>
   
   <script>
   import NavBar from '../components/NavBar.vue';
-  
+  import Footer from '../components/Footer.vue'; 
+
   export default {
     components: {
       NavBar,
+      Footer
     },
     data() {
       return {
@@ -126,6 +131,12 @@
   </script>
   
   <style scoped>
+
+  .footer{
+    position: relative;
+    top: 20rem;
+  }
+
   .top {
     width: 102%;
     height: 40rem;

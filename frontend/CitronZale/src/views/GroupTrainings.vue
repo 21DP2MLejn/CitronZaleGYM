@@ -77,21 +77,29 @@
             </section>
         </div>
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
 </main>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue';
-
+import Footer from '../components/Footer.vue';
 export default {
     components:{
         NavBar,
+        Footer,
     }
 }
 </script>
 
 <style scoped>
 
+    .footer{
+        position: relative;
+        top: 20rem;
+    }
     .introduction-box-top{
         width: 100vw;
         height: 50rem;

@@ -58,7 +58,6 @@
     background-color: var(--ShinyShamrock);
     margin: 1rem;
     padding: 1rem;
-    border-radius: 1.5rem;
     text-align: center;
   }
   

@@ -74,16 +74,21 @@
     <div class="trial">
         <FreeTrial />
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
 </main>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue';
 import FreeTrial from '../components/FreeTrial.vue';
+import Footer from '../components/Footer.vue';
 export default {
   components:{
     NavBar,
     FreeTrial,
+    Footer
   },
   methods: {
   changeColor(buttonClicked) {
@@ -194,7 +199,10 @@ button{
 }
 
 
-
+.footer{
+  position: relative;
+  top: 30rem;
+}
 .select-period button{
     height: 2.8rem;
     margin: 2px;

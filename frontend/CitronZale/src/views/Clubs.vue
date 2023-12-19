@@ -33,16 +33,21 @@
         </div>
 
     </div>
+    <div class="footer">
+      <Footer />
+    </div>
 </body>
 </main>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue';
+import Footer from '../components/Footer.vue';
 
 export default{
     components:{
         NavBar,
+        Footer,
     }
 }
 </script>
@@ -84,6 +89,10 @@ button{
     top: -4px;
 }
 
+.footer{
+    position: relative;
+    top: 20rem;
+}
 .text-container{
     margin-top: 12rem;
     margin-bottom: 8rem;
