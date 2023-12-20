@@ -1,6 +1,9 @@
 <template>
 <main>
-    <NavBar />
+    <div class="navbar-container">
+        <NavBar />
+    </div>
+
     <div class="introduction-box-top">
         <div class="content-container">
             <h1>GROUP TRAININGS</h1>
@@ -96,6 +99,9 @@ export default {
 
 <style scoped>
 
+    .nav-bar{
+        position: absolute;
+    }
     .footer{
         position: relative;
         top: 20rem;
@@ -105,7 +111,7 @@ export default {
         height: 50rem;
         background-color: var(--TeaGreen);
         position: relative;
-        top: 3rem;
+        top: 4rem;
         left: -0.5rem;
         padding: 1rem;
         display: inline-block;
@@ -150,30 +156,17 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         z-index: 0;
     }
 
-    .flex-container {
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      top: 10rem;
-    }
-
-    .choose-text{
-        position: relative;
-        top: 10rem;
-        justify-content: center;
-        align-content: center;
+    .flex-container{
         display: flex;
+        align-content: center;
+        justify-content: baseline;
     }
 
-    .card:hover{
-        transform: scale(1.1);
-        border-color: var(--ShinyShamrock);
-        box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-        outline: none;
-    }
+
 
 
     

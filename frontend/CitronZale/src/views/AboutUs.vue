@@ -1,6 +1,10 @@
 <template>
     <main>
       <NavBar />
+      <div class="top-section">
+        <h1></h1>
+        <p></p>
+      </div>
       <div class="main-container">
         <div class="sub-container">
           <h1>About Us</h1>

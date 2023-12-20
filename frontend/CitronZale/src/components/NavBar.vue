@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="navbar-container">
     <div class="image-container">
       <router-link to="/"><img src="@/assets/Images/Logo.png" alt="logo" class="logo-image" /></router-link>
     </div>
@@ -15,7 +15,7 @@
       <li><router-link to="/about-us">AboutUs</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li>
+      <li class="join-button">
         <router-link to="/login">Join</router-link>
       </li>
     </ul>
@@ -23,6 +23,11 @@
 </template>
 
 <style scoped>
+
+.join-button{
+  position: relative;
+  left: 63rem;
+}
 .logo-image {
   width: 100%;
   height: auto;
@@ -35,7 +40,7 @@
   outline: none;
 }
 
-.container {
+.navbar-container {
   background-color: var(--ShinyShamrock);
   height: 8vh;
   width: 100vw;
@@ -45,6 +50,7 @@
   left: 0;
   border-bottom: 2px solid var(--TeaGreen);
   z-index: 10000;
+  color: var(--Black);
 }
 
 .image-container {
@@ -105,6 +111,10 @@ li:hover{
   color: var(--PastelGreen);
 }
 
+li a.router-link-active {
+ color: var(--TeaGreen);
+}
+
 
 .bar {
   position: relative;
@@ -123,11 +133,14 @@ li:hover{
     display: block;
   }
 
+  .join-button{
+    left: 0rem;
+  }
   .nav-list {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 3.5rem;
+    top: 3.4rem;
     left: 0;
     width: 100%;
     height: auto; 
