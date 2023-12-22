@@ -12,6 +12,11 @@ import GroupTrainings from '../views/GroupTrainings.vue'
 import Trainers from '../views/Trainers.vue'
 import Clubs from '../views/Clubs.vue'
 import Profile from '../views/Profile.vue'
+import Checkoutclub from '../views/CheckOutClub.vue'
+import Checkoutmembership from '../views/CheckOutMembership.vue'
+import Checkoutdetails from '../views/CheckOutDetails.vue'
+import Checkoutaddons from '../views/CheckOutDetails.vue'
+import Checkoutpayment from '../views/CheckOutPayment.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -81,6 +86,31 @@ const router = createRouter({
       path: '/profile',
       name: 'profile',
       component: Profile
+    },
+    {
+      path: '/checkout-club',
+      name: 'checkout-club',
+      component: Checkoutclub
+    },
+    {
+      path: '/checkout-membership',
+      name: 'checkout-membership',
+      component: Checkoutmembership
+    },
+    {
+      path: '/checkout-details',
+      name: 'checkout-details',
+      component: Checkoutdetails
+    },
+    {
+      path: '/checkout-addons',
+      name: 'checkout-addons',
+      component: Checkoutaddons
+    },
+    {
+      path: '/checkout-payment',
+      name: 'checkout-payment',
+      component: Checkoutpayment
     },
   ]
 })
