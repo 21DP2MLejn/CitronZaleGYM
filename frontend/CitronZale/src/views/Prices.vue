@@ -23,7 +23,7 @@
                 <li>Rewrite membership to another person</li>
                 <li>Minimal period of contract: 12months</li>
             </ul>
-            <button id="buyregular">BUY NOW</button>
+            <router-link to="/checkout-details"><button id="buyregular">BUY NOW</button></router-link>
         </div>
         <div class="card flex" id="flexsub">
             <h2>Flex</h2>
@@ -36,7 +36,7 @@
                 <li>Intro training</li>
                 <li>Minimal period of contract: 12months</li>
             </ul>
-            <button id="buyflex"> BUY NOW </button>
+            <router-link to="/checkout-details"><button id="buyflex"> BUY NOW </button></router-link>
         </div>
         <div class="card super" id="supersub">
             <h2>Super</h2>
@@ -51,7 +51,8 @@
                 <li>Sauna</li>
                 <li>Unlimited period of contract</li>
             </ul>
-            <button id="buysuper">BUY NOW</button>
+            <router-link to="/checkout-details"><button id="buysuper"> BUY NOW </button></router-link>
+            
         </div>
         <div class="card deluxe" id="deluxesub">
             <h2>Deluxe</h2>
@@ -68,7 +69,7 @@
                 <li>Water refill every 20 minutes</li>
                 <li>Unlimited period of contract</li>
             </ul>
-            <button id="buydeluxe">BUY NOW</button>
+            <router-link to="/checkout-details"><button id="buydeluxe">BUY NOW</button></router-link>
         </div>
     </div>
     <div class="trial">

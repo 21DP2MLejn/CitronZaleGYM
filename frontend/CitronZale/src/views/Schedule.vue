@@ -205,7 +205,6 @@ export default{
 .square-shape,
 .rectangle-shape,
 .quadrilateral-shape {
-    background-image: url('../assets/Images/gym_picture9.jpg');
     background-size: 100% 100%;
     background-position: 0 0;
 }
@@ -218,8 +217,9 @@ export default{
   left: 85.5rem;
   top: 3rem;
   background-position: -200% 10%;
-  background-size: 150% 200%;
+  background-size: 150% 100%;
   animation: movesquare 6s linear infinite;
+  background-image: url('../assets/Images/gym_picture7.jpg')
 }
 
 .rectangle-shape {
@@ -232,6 +232,7 @@ export default{
   background-position: 0% -100%;
   background-size: 150% 200%;
   animation: moverectangle 6s linear infinite;
+  background-image: url('../assets/Images/gym_picture4.jpg')
 }
 
 .quadrilateral-shape {
@@ -241,8 +242,9 @@ export default{
   left: 65rem;
   top: 3rem;
   background-position: 0 0;
-  background-size: 150% 200%;
+  background-size: 150% 100%;
   animation: movequadrilateral 6s linear infinite;
+  background-image: url('../assets/Images/gym_picture1.jpg')
 }
 .footer{
     position: relative;
