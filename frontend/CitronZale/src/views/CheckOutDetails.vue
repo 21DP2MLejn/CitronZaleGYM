@@ -28,8 +28,8 @@
                     <br>
                 <select name="gender" id="gender" v-model="gender" required>
                     <option value="">Select your gender</option>
-                    <option value="Man">Man</option>
-                    <option value="Woman">Woman</option>
+                    <option value="Man">Male</option>
+                    <option value="Woman">Female</option>
                 </select>
                     <br>
                 <label for="birthdate"><span class="required">*</span> Birth Date</label>
@@ -86,10 +86,23 @@
                 </div>
                 
             </form>
-
+            <!---Bankas informacija vajadziga down -->
         </div>
         <div v-if="step ===  3">
-
+            <div class="payment-method">
+                <label for="">
+                    <input type="radio" value="creditCard" v-model="paymentMethod">
+                    Credit Card
+                </label>
+                <div v-if="paymentMethod === 'creditCard'" class="credit-card-details">
+                    <label for="cardNumber"><span class="required">*</span> Card Number</label>
+                    <input id="cardNumber" type="text" placeholder="Card Number" v-model="cardNumber">
+                    <label for="securitycode"><span class="required">*</span> CVV</label>
+                    <input type="text" name="cvv" id="securitycode" v-model="cvv" placeholder="saman0743">
+                    <label for="creditcarddate"><span class="required">*</span> Expiration Date</label>
+                    <input type="date" id="creditcarddate" v-model="creditcarddate">
+                </div>
+            </div>
         </div>
     </div>
     </div>
@@ -124,7 +137,9 @@ export default {
             sauna: '',
             massage: '',
             none:'',
-
+            paymentMethod: '',
+            cvv:'',
+            creditcarddate:'',
 
         };
     },
@@ -132,6 +147,8 @@ export default {
         goBack() {
             if (this.step >  1) {
                 this.step--;
+            }else{
+                this.$router.push('/prices')
             }
         },
     goNext() {
@@ -168,17 +185,14 @@ export default {
             alert('Please select your home club.');
             return;
         }
-        if (this.step ===  3 && !this.subscriptionType) {
+        if (this.step ===  2 && !this.subscriptionType) {
             alert('Please select your subscription type.');
             return;
         }
-        // If validation passes, advance to the next step
         this.step++;
 
-        // If this is the last step, redirect to a new page or perform some other action
         if (this.step >  3) {
-            // Redirect to a new page
-            this.$router.push('/next-page');
+            this.$router.push('');
         }
     }
 }   
@@ -290,4 +304,22 @@ button{
     transition: 0.5s;
     position: relative;
 }
+
+.credit-card-details {
+    width:  100%;
+    max-width:  400px;
+    padding:  20px;
+    background-color: #f8f8f8;
+    border:  1px solid #e0e0e0;
+    border-radius:  5px;
+    margin-top:  20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.credit-card-details label {
+    margin-bottom:  5px;
+}
+
 </style>
