@@ -3,18 +3,13 @@
     <div class="top-section">
         <TopSection/>
     </div>
-    <div class="header">
-        <h1>ADD YOUR DETAILS</h1>
-    </div>
     <div class="center">
           <div class="details-content">
-        <!-- Conditionally render input fields based on the current step -->
         <div v-if="step ===  1">
-            <h3>Please, fill in your personal details:</h3>
             <form action="">
                 <label for="email"> <span class="required">*</span>Email address</label>
                     <br>
-                <input id="email" v-model="email" type="text" placeholder="email@example.com" required>
+                <input id="email" v-model="email" type="email" placeholder="email@example.com" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                     <br>
                 <label for="firstname"> <span class="required">*</span> First Name</label>
                     <br>
@@ -38,7 +33,7 @@
                     <br>
                 <label for="phonenumber"><span class="required">*</span>Phone Number</label>
                     <br>
-                <input id="phonenumber" type="tel" v-model="phonenumber" placeholder="+xxxxxxxxxxx" required>
+                <input id="phonenumber" type="tel" v-model="phonenumber" placeholder="XXXXXXXXX" required>
                     <br>
                 <label for="activationdate"><span class="required">*</span>Activation date of membership</label>
                     <br>
@@ -84,9 +79,7 @@
                     <label for="none">None</label>
                     <br>
                 </div>
-                
             </form>
-            <!---Bankas informacija vajadziga down -->
         </div>
         <div v-if="step ===  3">
             <div class="payment-method">
@@ -94,13 +87,29 @@
                     <input type="radio" value="creditCard" v-model="paymentMethod">
                     Credit Card
                 </label>
+                <br>
+                <label for="">
+                    <input type="radio" value="paypal" v-model="paymentMethod">
+                    PayPal
+                </label>
                 <div v-if="paymentMethod === 'creditCard'" class="credit-card-details">
+                    <label for="cardholdername"><span class="required">*</span> Card Holder Name</label>
+                    <input type="text" v-model="CardHolderName" placeholder="Name" id="cardholdername">
+                    <label for="cardholderlastname"><span class="required">*</span> Card Holder Last Name</label>
+                    <input type="text" id="cardholderlastname" v-model="cardholderlastname" placeholder="Last Name">
                     <label for="cardNumber"><span class="required">*</span> Card Number</label>
-                    <input id="cardNumber" type="text" placeholder="Card Number" v-model="cardNumber">
+                    <input id="cardNumber" type="text" placeholder="Card Number" v-model="cardNumber" maxlength="19">
                     <label for="securitycode"><span class="required">*</span> CVV</label>
-                    <input type="text" name="cvv" id="securitycode" v-model="cvv" placeholder="saman0743">
+                    <input type="text" name="cvv" id="securitycode" v-model="cvv" placeholder="CVV" maxlength="3">
                     <label for="creditcarddate"><span class="required">*</span> Expiration Date</label>
-                    <input type="date" id="creditcarddate" v-model="creditcarddate">
+                    <input type="month" id="creditcarddate" v-model="creditcarddate">
+                    <br>
+                    <button>Proceed</button>
+                </div>
+                <div v-if="paymentMethod === 'paypal'" class="paypal-method">
+                    <h3>Total: {{ price }}</h3>
+                    <br>
+                    <button class="paypal-button" id="paypalbut">PayPal</button>
                 </div>
             </div>
         </div>
@@ -138,9 +147,10 @@ export default {
             massage: '',
             none:'',
             paymentMethod: '',
+            CardHolderName:'',
+            cardholderlastname:'',
             cvv:'',
             creditcarddate:'',
-
         };
     },
     methods: {
@@ -192,7 +202,7 @@ export default {
         this.step++;
 
         if (this.step >  3) {
-            this.$router.push('');
+            this.$router.push('/prices');
         }
     }
 }   
@@ -202,6 +212,9 @@ export default {
 
 <style scoped>
 
+.paypal-button{
+    width: 10rem;
+}
 .header{
     position: relative;
     left: 50rem;
@@ -320,6 +333,23 @@ button{
 
 .credit-card-details label {
     margin-bottom:  5px;
+}
+
+.paypal-method{
+    width:  100%;
+    max-width:  400px;
+    padding:  20px;
+    background-color: #f8f8f8;
+    border:  1px solid #e0e0e0;
+    border-radius:  5px;
+    margin-top:  20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.paypal-method button{
+    left: 6rem;
 }
 
 </style>

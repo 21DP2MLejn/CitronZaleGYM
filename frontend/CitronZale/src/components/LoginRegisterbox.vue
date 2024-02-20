@@ -1,92 +1,119 @@
 <template>
-<body>  
-  <div class="container">
+  <div class="login-box">
     <h2>{{ title }}</h2>
-    <input type="text" placeholder="email@example.com" v-if="isRegister">
+    <input type="text" placeholder="Email" v-if="isRegister">
+    <br>
     <input type="text" placeholder="Username">
-    <input type="password" placeholder="password">
+    <br>
+    <input type="password" placeholder="Password">
+    <br>
     <router-link to="/"><button>{{ loginButtonText }}</button></router-link>
-    <router-link  to="/register">{{ registerLinkText }}</router-link>
-    <router-link  to="/login">{{ loginLinkText }}</router-link>
-    <router-link to="/forgot-password" class="forgot-password" v-if="!isRegister"> forgot password?</router-link>
+    <br>
+    <div class="links-container">
+      <router-link to="/register" v-if="!isRegister">{{ registerLinkText }}</router-link>
+      <router-link to="/login" v-if="isRegister">{{ loginLinkText }}</router-link>
+      <br>
+      <router-link to="/forgot-password" class="forgot-password" v-if="!isRegister">Forgot password?</router-link>
+    </div>
   </div>
-</body>
 </template>
 
 <script>
 export default {
   name: 'LoginBox',
   props: {
-    title: String,
-    loginButtonText: String,
-    registerLinkText: String,
-    loginLinkText: String,
+    title: {
+      type: String,
+      default: 'Gym Fitness Login'
+    },
+    loginButtonText: {
+      type: String,
+      default: 'Log In'
+    },
+    registerLinkText: {
+      type: String,
+      default: 'Register'
+    },
+    loginLinkText: {
+      type: String,
+      default: 'Already have an account?'
+    },
     isRegister: Boolean,
   },
   methods: {
     login() {
+      // Implement login functionality here
     },
   },
 };
 </script>
-  
-  <style scoped>
 
-  body{
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    top: 0;
-    left: 0;
-    background-color:var(--Black) ;
-  }
-
-  button{
-    width: 6rem;
-    height: 1.8rem;
-    border-radius: 1rem;
-    border: 0.15rem solid var(--PastelGreen);
-    margin-bottom: 1rem;
-    transition: 0.3s ease-in-out;
-  }
-
-  button:hover{
-    transform: scale(1.1);
+<style scoped>
+.login-box {
+  width:   320px;
+  padding:   20px;
+  background-color: white;
+  border-radius:   10px;
+  box-shadow:   0   0   10px rgba(0,   0,   0,   0.1);
+  margin:   50px auto;
+  max-height:  400px; /* Adjust as needed */
 }
 
-  input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
+.login-box h2 {
+  text-align: center;
+  color: var(--TeaGreen);
+  margin-bottom:   20px;
+}
 
-  input:focus {
-    border-color: var(--ShinyShamrock);
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-    outline: none; 
-  }
-  .container {
-    position: relative;
-    width: 30vw;
-    height: 50vh;
-    background-color: var(--ShinyShamrock);
-    border-radius: 2rem;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    left: calc(100vw - 30vw - 7rem);
-    top: 12.5rem;
-  }
+.login-box input {
+  width:   94%;
+  padding:   10px;
+  margin-bottom:   10px;
+  border:   1px solid var(--TeaGreen);
+  border-radius:   5px;
+}
 
-  .forgot-password{
+.login-box button {
+  width:   100%;
+  padding:   10px;
+  background-color: var(--TeaGreen);
+  color: white;
+  border: none;
+  border-radius:   5px;
+  cursor: pointer;
+  transition: background-color   0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: var(--ShinyShamrock);
+}
+
+.links-container {
+  text-align: center;
+}
+
+.links-container a {
+  color: var(--TeaGreen);
+  text-decoration: none;
+  margin:   0.5rem;
+}
+
+.links-container a:hover {
+  color: var(--ShinyShamrock);
+}
+
+.forgot-password {
+  font-size:   0.8rem;
+  color: var(--TeaGreen);
+}
+
+
+@media (max-width: 768px) {
+
+  .login-box{
     position: relative;
-    text-decoration: none;
-    color: var(--Black);
+    top: 12rem;
   }
-  </style>
+  
+}
+</style>
