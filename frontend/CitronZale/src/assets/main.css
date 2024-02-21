@@ -74,3 +74,7 @@ input,select {
     box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
     outline: none; 
   }
+
+  .map{
+    filter: grayscale(100%) invert(92%) contrast(83%);
+  }

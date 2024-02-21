@@ -3,7 +3,7 @@
 <body>
     <NavBar />
     <div class="location-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1825.978264435257!2d24.038861847822393!3d57.02644165190223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eec5b678486d11%3A0xdc8a5e06a1f43882!2sLaTS!5e0!3m2!1slv!2slv!4v1700676578243!5m2!1slv!2slv" width="102%" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1825.978264435257!2d24.038861847822393!3d57.02644165190223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eec5b678486d11%3A0xdc8a5e06a1f43882!2sLaTS!5e0!3m2!1slv!2slv!4v1700676578243!5m2!1slv!2slv" width="102%" height="750" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="main-container">
         <div class="title-container">
@@ -44,7 +44,7 @@ export default{
 .main-container{
     background-color: var(--TeaGreen);
     width: 102%;
-    height: 70rem;
+    height: 100rem;
     position: relative;
     left: -1%;
 }
@@ -86,10 +86,13 @@ export default{
     display: flex;
     align-content: center;
     justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    top: 1rem;
 }
 
 .image{
-    width: 30rem;
+    width: 40rem;
     height: 20rem;
     background-color: black;
     margin: 1rem;
@@ -98,6 +101,34 @@ export default{
 .footer{
     position: absolute;
     left: 0.5rem;
+    top: 140rem;
 }
+
+.tr{
+    background-image: url(../assets/Images/gym_picture1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tl{
+    background-image: url(../assets/Images/gym_picture2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.bl{
+    background-image: url(../assets/Images/gym_picture3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.br{
+    background-image: url(../assets/Images/gym_picture4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 
 </style>

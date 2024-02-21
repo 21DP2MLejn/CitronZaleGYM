@@ -16,19 +16,19 @@
             <h2>BOLDERAJA</h2>
             <router-link to="/bolderaja-club" class="button-link">Visit Club Page</router-link>
             <img src="../assets/Images/gym_picture2.jpg" >
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1825.978264435257!2d24.038861847822393!3d57.02644165190223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eec5b678486d11%3A0xdc8a5e06a1f43882!2sLaTS!5e0!3m2!1slv!2slv!4v1700676578243!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1825.978264435257!2d24.038861847822393!3d57.02644165190223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eec5b678486d11%3A0xdc8a5e06a1f43882!2sLaTS!5e0!3m2!1slv!2slv!4v1700676578243!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="club b">
             <h2>TEIKA</h2>
             <router-link to="/teika-club" class="button-link">Visit Club Page</router-link>
             <img src="../assets/Images/gym_picture4.jpg" >
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2174.657637876182!2d24.160287877167224!3d56.97179679744783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecf4e556c2eed%3A0xbdd46181f8ce2c63!2sKebabish%20Riga!5e0!3m2!1slv!2slv!4v1700676535122!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2174.657637876182!2d24.160287877167224!3d56.97179679744783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecf4e556c2eed%3A0xbdd46181f8ce2c63!2sKebabish%20Riga!5e0!3m2!1slv!2slv!4v1700676535122!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="club c">
             <h2>OGRE</h2>
             <router-link to="/ogre-club" class="button-link">Visit Club Page</router-link>
             <img src="../assets/Images/gym_picture7.jpg" >
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2183.4092401694284!2d24.59378547715951!3d56.82176790915351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e925b8c035bf4f%3A0x2283cc460a35a7c0!2sKebab%20Spot!5e0!3m2!1slv!2slv!4v1700676447259!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2183.4092401694284!2d24.59378547715951!3d56.82176790915351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e925b8c035bf4f%3A0x2283cc460a35a7c0!2sKebab%20Spot!5e0!3m2!1slv!2slv!4v1700676447259!5m2!1slv!2slv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             
         </div>
 

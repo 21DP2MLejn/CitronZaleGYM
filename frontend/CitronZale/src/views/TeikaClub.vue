@@ -3,7 +3,7 @@
     <body>
         <NavBar />
         <div class="location-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2174.657637876182!2d24.160287877167224!3d56.97179679744783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecf4e556c2eed%3A0xbdd46181f8ce2c63!2sKebabish%20Riga!5e0!3m2!1slv!2slv!4v1700676535122!5m2!1slv!2slv" width="102%" height="550" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2174.657637876182!2d24.160287877167224!3d56.97179679744783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecf4e556c2eed%3A0xbdd46181f8ce2c63!2sKebabish%20Riga!5e0!3m2!1slv!2slv!4v1700676535122!5m2!1slv!2slv" width="102%" height="750" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="main-container">
             <div class="title-container">
@@ -40,64 +40,94 @@
     }
     </script>
     
-    <style scoped>
-    .main-container{
-        background-color: var(--TeaGreen);
-        width: 102%;
-        height: 70rem;
-        position: relative;
-        left: -1%;
-    }
+<style scoped>
+.main-container{
+    background-color: var(--TeaGreen);
+    width: 102%;
+    height: 100rem;
+    position: relative;
+    left: -1%;
+}
+
+.title-container{
+    z-index: 2;
+    position: relative;
+    width: 102%;
+    height: 20rem;
+    position: relative;
+    left: -1%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.title-container h1{
+    font-weight: var(--font--very-bold);
+    font-size: 5vw;
+    color: var(--Black);
+    position: relative;
+    top: 1rem;
+}
+
+.location-container{
+    position: relative;
+    left: -1%;
+}
+
+.description-container{
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 2rem;
+}
+.images-container{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    top: 1rem;
+}
+
+.image{
+    width: 40rem;
+    height: 20rem;
+    background-color: black;
+    margin: 1rem;
+}
+
+.footer{
+    position: absolute;
+    left: 0.5rem;
+    top: 140rem;
+}
+
+.tr{
+    background-image: url(../assets/Images/gym_picture9.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tl{
+    background-image: url(../assets/Images/gym_picture10.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.bl{
+    background-image: url(../assets/Images/gym_picture11.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.br{
+    background-image: url(../assets/Images/gym_picture12.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
     
-    .title-container{
-        z-index: 2;
-        position: relative;
-        width: 102%;
-        height: 20rem;
-        position: relative;
-        left: -1%;
-        display: flex;
-        align-content: center;
-        justify-content: center;
-    }
-    
-    .title-container h1{
-        font-weight: var(--font--very-bold);
-        font-size: 5vw;
-        color: var(--Black);
-        position: relative;
-        top: 1rem;
-    }
-    
-    .location-container{
-        position: relative;
-        left: -1%;
-    }
-    
-    .description-container{
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 2rem;
-    }
-    .images-container{
-        width: 100%;
-        height: 50%;
-        display: flex;
-        align-content: center;
-        justify-content: center;
-    }
-    
-    .image{
-        width: 30rem;
-        height: 20rem;
-        background-color: black;
-        margin: 1rem;
-    }
-    
-    .footer{
-        position: absolute;
-        left: 0.5rem;
-    }
-    
-    </style>
+</style>
