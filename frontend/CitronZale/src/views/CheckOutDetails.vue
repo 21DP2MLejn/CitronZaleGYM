@@ -5,7 +5,7 @@
     </div>
     <div class="center">
           <div class="details-content">
-        <div v-if="step ===  1">
+        <div v-if="step ===  1" class="personal-details">
             <form action="">
                 <label for="email"> <span class="required">*</span>Email address</label>
                     <br>
@@ -41,7 +41,7 @@
             </form>
 
         </div>
-        <div v-if="step ===  2">
+        <div v-if="step ===  2" class="gym-details">
             <form action="">
                 <label for="selectClubs"> <span class="required">*</span>Your home club:</label>
                     <br>
@@ -120,15 +120,20 @@
             <button @click="goNext">NEXT</button>
         </div>
 
+    <div class="footer">
+        <Footer />
+    </div>
 </main>
 </template>
 
 <script>
 import TopSection from '../components/TopSection.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
     components: {
-        TopSection
+        TopSection,
+        Footer
     },
     data() {
         return {
@@ -250,37 +255,52 @@ export default {
 }
 
 .details-content{
-    width: 100%;
-    height: 10rem;
+    width: 30rem;
     position: relative;
-    left: 43.5%;
 
 }
 .personal-details{
     width: 100%;
-    height: 12rem;
+    height: 100%;
     position: relative;
-    left: 0;
-    display: inline-block;
-    top: 5rem;
-    left: 2.5rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    border:  1px solid var(--TeaGreen);
+    border-radius:  5px;
+    padding-top: 1rem;
+   
+}
+
+.gym-details{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    border:  1px solid var(--TeaGreen);
+    border-radius:  5px;
+    padding-top: 1rem;
 }
 
 .personal-details input{
-    width: 100%;
     position: relative;
-    top: 1rem;
+    width: 20rem;
+
 }
 .button-container{
     width: 100%;
     height: 3rem;
     position: relative;
-    top: 3rem;
     margin: 0;
     padding: 0%;
     display: flex;
     justify-content: center;
     align-content: center;
+    left: -0.5rem;
 }
 
 button {
@@ -350,6 +370,11 @@ button{
 
 .paypal-method button{
     left: 6rem;
+}
+
+.footer{
+    position: relative;
+    top: 10rem;
 }
 
 </style>

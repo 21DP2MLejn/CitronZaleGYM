@@ -13,6 +13,9 @@ import Trainers from '../views/Trainers.vue'
 import Clubs from '../views/Clubs.vue'
 import Profile from '../views/Profile.vue'
 import Checkoutdetails from '../views/CheckOutDetails.vue'
+import BolderajaClub from '../views/BolderajaClub.vue'
+import TeikaClub from '../views/TeikaClub.vue'
+import OgreClub from '../views/OgreClub.vue'
 
 
 const router = createRouter({
@@ -88,6 +91,21 @@ const router = createRouter({
       path: '/checkout-details',
       name: 'checkout-details',
       component: Checkoutdetails
+    },
+    {
+      path: '/bolderaja-club',
+      name: 'bolderaja-club',
+      component: BolderajaClub
+    },
+    {
+      path: '/teika-club',
+      name: 'teika-club',
+      component: TeikaClub
+    },
+    {
+      path: '/ogre-club',
+      name: 'ogre-club',
+      component: OgreClub
     },
 
 

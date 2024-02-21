@@ -42,7 +42,6 @@ export default {
   },
   methods: {
     login() {
-      // Implement login functionality here
     },
   },
 };
@@ -56,7 +55,7 @@ export default {
   border-radius:   10px;
   box-shadow:   0   0   10px rgba(0,   0,   0,   0.1);
   margin:   50px auto;
-  max-height:  400px; /* Adjust as needed */
+  max-height:  400px; 
 }
 
 .login-box h2 {
