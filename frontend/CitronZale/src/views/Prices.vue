@@ -6,7 +6,6 @@
     <div class="image-container">
         <div class="title"> <h1>FEATURING THE BEST PRICES</h1></div>
     </div>
-
     <div class="select-period">
         <button id="all deals period" @click="changeColor('all')" >All deals</button>
         <button id="longterm period" @click="changeColor('longterm')">Long-term</button>
