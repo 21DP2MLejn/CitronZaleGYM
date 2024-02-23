@@ -74,6 +74,7 @@
   @media (max-width: 721px) {
     .container {
       top: 8rem;
+      height: 58rem;
     }
   }
   </style>

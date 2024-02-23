@@ -147,136 +147,33 @@ export default {
 </script>
 
 <style scoped>
-
-button {
-  --b: 3px;   
-  --s: .15em;
-  
-  padding: calc(.05em + var(--s)) calc(.3em + var(--s));
-  color: var(--black);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--black) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .2em;
-}
-button:hover,
-button:focus-visible{
-  --_p: 0px;
-  outline-color: var(--black);
-  outline-offset: .05em;
-}
-button:active {
-  background: var(--black);
-  color: var(--TeaGreen);
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin:  0;
+  padding:  0;
+  background-color: var(--TeaGreen);
 }
 
-button{
-    font-size: 1.4rem;
-    cursor: pointer;
-    border: none;
-    margin: .1em;
-    transition: 0.5s;
-    position: relative;
-}
-.select-period {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   border-radius: 32px;
-   padding: 1.1rem;
-   width: 25%;
-   background-color: transparent;
-   position: relative;
-   top: 5rem;
-   margin: 0 auto;
-   height: 4rem;
-   flex-wrap: wrap;
-   border: 1px solid;
-   border-color: var(--ShinyShamrock);
-   box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-   outline: none; 
+.nav-bar {
+  background-color: var(--ShinyShamrock);
+  padding:  1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow:  0  2px  4px rgba(0,  0,  0,  0.1);
 }
 
-
-.footer{
+.image-container {
+  width:  102%;
+  height:  400px;
+  background-color: var(--TeaGreen);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  top: 30rem;
-}
-.select-period button{
-    height: 2.8rem;
-    margin: 2px;
-    background-color: transparent;
-    border-radius: 2rem;
-}
-
-  .prices-container {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: row;
-    position: relative;
-    top: 5rem;
-    flex-wrap: wrap; 
-  }
-
-  .card {
-    max-width: 22rem; 
-    width: 100%; 
-    background-color: var(--ShinyShamrock);
-    position: relative;
-    margin: 2rem;
-    border-radius: 2rem;
-    padding: 1rem;
-  }
-
-  .trial{
-    position: relative;
-    top: 20rem;
-    left: -1rem;
-    margin: 0;
-    padding: 0;
-
-  }
-
-.image-container{
-    width: 100vw;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    top: 4.2rem;
-    margin-bottom: 4rem;
-    background-color: var(--TeaGreen);
-    height: 40rem;
-    text-align: center;
-    left: -1rem;
-}
-
-
-.image-container .title {
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- text-align: center;
- z-index: 100;
- width: 23vw;
- font-weight: var(--font-very-bold);
- display: flex;
- justify-content: center;
- align-items: center;
-}
-
-
-img{
-    width: 100vw;
-    height: auto;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    height: 45rem;
+  overflow: hidden;
+  left: -1%;
 }
 
 .image-container h1{
@@ -291,33 +188,106 @@ img{
     font-weight: var(--font-bold);    
 }
 
-.button-container{
-  position: relative;
-  top: 8rem;
-  width: 100%;
-  height: auto;
+.select-period {
   display: flex;
-  align-content: center;
   justify-content: center;
+  gap:  1rem;
+  margin-top:  2rem;
 }
 
+.select-period button {
+  background-color: var(--ShinyShamrock);
+  color: #fff;
+  border: none;
+  padding:  0.5rem  1rem;
+  border-radius:  5px;
+  cursor: pointer;
+  transition: background-color  0.3s ease;
+}
 
-  @media (max-width: 768px) {
-    .card {
-      max-width: 100%;
-    }
+.select-period button:hover {
+  background-color: var(--PastelGreen);
+}
 
-    .title {
-      font-size: 20rem;
+.prices-container {
+  display: flex;
+  justify-content: center;
+  gap:  2rem;
+  flex-wrap: wrap;
+  margin-top:  2rem;
+}
+
+.card {
+  background-color: var(--ShinyShamrock);
+  padding:  1rem;
+  border-radius:  10px;
+  width:  300px;
+  box-shadow:  0  4px  8px rgba(0,  0,  0,  0.1);
+  transition: transform  0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card h2 {
+  margin-bottom:  1rem;
+}
+
+.card ul {
+  list-style: none;
+  padding:  0;
+}
+
+.card ul li {
+  margin-bottom:  0.5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top:  2rem;
+}
+
+.button-container button {
+  background-color: var(--ShinyShamrock);
+  color: #fff;
+  border: none;
+  padding:  0.5rem  1rem;
+  border-radius:  5px;
+  cursor: pointer;
+  transition: background-color  0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: var(--PastelGreen);
+}
+
+.trial {
+  margin-top:  2rem;
+  left: -1%;
+}
+
+.footer {
+  background-color: var(--TeaGreen);
+  text-align: center;
+  color: #fff;
+  position: relative;
+  bottom:  0;
+  width:  100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width:  768px) {
+  .select-period,
+  .prices-container {
+    flex-direction: row;
+    align-items: center;
   }
-  .select-period button {
-    font-size: 1rem;
-    padding: 0.5rem;
- }
 
- .select-period{
-  width: 75%;
- }
-
+  .card {
+    width:  100%;
+    margin-bottom:  1rem;
+  }
 }
 </style>

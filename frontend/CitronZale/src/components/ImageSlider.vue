@@ -1,32 +1,29 @@
 <template>
-<body>
   <div class="background">
-  <div class="image-slider">
-    <div class="slider-image-container">
-      <div class="text-container">
-        <h1>START NOW!</h1>
-        <h2>The only bad workout is one you didn't do.</h2>
-        <p>What are you waiting for? Join NOW and get your dream physique! We have the best deals for everyone!</p>
-        <ul>
-          <li>Spacious exercise hall</li>
-          <li>Wide variety of modern equipment</li>
-          <li>Friendly customer service</li>
-          <li>Professional coaches</li>
-          <li>Exclusive membership deals</li>
-          <li>OPEN 24/7</li>
-        </ul>
+    <div class="image-slider">
+      <div class="slider-image-container">
+        <div class="text-container">
+          <h1>START NOW!</h1>
+          <h2>The only bad workout is one you didn't do.</h2>
+          <p>What are you waiting for? Join NOW and get your dream physique! We have the best deals for everyone!</p>
+          <ul>
+            <li>Spacious exercise hall</li>
+            <li>Wide variety of modern equipment</li>
+            <li>Friendly customer service</li>
+            <li>Professional coaches</li>
+            <li>Exclusive membership deals</li>
+            <li>OPEN  24/7</li>
+          </ul>
+        </div>
+        <img :key="currentIndex" :src="currentImageSrc" alt="Gym Image Slider" class="slider-image" />
       </div>
-      <img :key="currentIndex" :src="currentImageSrc" alt="Slider Image" class="slider-image" />
-    </div>
-    <div class="button-container">
-      <button @click="prevImage"><p> &leftarrow; </p></button>
-      <button @click="nextImage"><p> &RightArrow; </p></button>
+      <div class="button-container">
+        <button @click="prevImage"><p> &leftarrow; </p></button>
+        <button @click="nextImage"><p> &RightArrow; </p></button>
+      </div>
     </div>
   </div>
-</div>
-</body>
-
-</template>
+  </template>  
 
 
 <script>
@@ -38,8 +35,9 @@ export default {
   data() {
     return {
       images: [gymPicture1, gymPicture2, gymPicture3],
-      currentIndex: 0,
+      currentIndex:  0,
       transitioning: false,
+      autoPlay: true,
     };
   },
   computed: {
@@ -51,154 +49,140 @@ export default {
     nextImage() {
       if (!this.transitioning) {
         this.transitioning = true;
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        this.currentIndex = (this.currentIndex +  1) % this.images.length;
         setTimeout(() => {
           this.transitioning = false;
-        }, 1000);
+        },  1000);
       }
     },
     prevImage() {
       if (!this.transitioning) {
         this.transitioning = true;
-        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        this.currentIndex = (this.currentIndex -  1 + this.images.length) % this.images.length;
         setTimeout(() => {
           this.transitioning = false;
-        }, 1000);
+        },  1000);
       }
     },
-  },
-  props: {
-    isNavOpen: Boolean,
+    toggleAutoPlay() {
+      this.autoPlay = !this.autoPlay;
+      if (this.autoPlay) {
+        this.startAutoPlay();
+      } else {
+        clearInterval(this.autoPlayInterval);
+      }
+    },
+    startAutoPlay() {
+      this.autoPlayInterval = setInterval(() => {
+        this.nextImage();
+      },  7000);
+    },
   },
   mounted() {
-    setInterval(() => {
-      this.nextImage();
-    }, 7000);
+    this.startAutoPlay();
+  },
+  beforeDestroy() {
+    clearInterval(this.autoPlayInterval);
   },
 };
 </script>
+
   
 <style scoped>
 
-body{
-  width: 100vw;
-  height: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 0;
-  margin: 0;
-}
-
-.slider-image:hover {
-  transform: scale(1.1); 
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
-}
-.text-container {
-  z-index: 2;
-  color: var(--Black);
-  position: absolute;
-  width: 30vw;
-  height: 100vh;
-  background-color: var(--TeaGreen);
-}
-
-h1, h2 {
+h1,h2,p,li{
   font-weight: var(--font-bold);
 }
 
-.image-slider {
+body {
+  width:  100vw;
+  height:  100vh;
+  margin:  0;
+  padding:  0;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  position: relative;
+  background-color: #f5f5f5;
 }
 
 .slider-image-container {
-  width: 100vw;
-  height: 100vh;
+  width:  100vw;
+  height:  100vh;
   overflow: hidden;
   position: relative;
-  top: 4.6rem;
 }
 
 .slider-image {
-  width: 90%;
-  height: auto;
-  opacity: 1;
-  animation: fade 1.5s forwards;
-  position: relative;
-  left: 12rem;
-  transition: 0.5s;
+  width:  100%;
+  height:  100%;
+  object-fit: cover;
+  transition: transform  1s ease-in-out;
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.text-container {
+  position: absolute;
+  top:  50%;
+  left:  50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  z-index:  10;
+  background-color: rgba(0, 0, 0, 0.507);
+}
+
+
+.text-container h1 {
+  font-size:  3rem;
+  margin-bottom:  1rem;
+}
+
+.text-container h2 {
+  font-size:  1.5rem;
+  margin-bottom:  1rem;
+}
+
+.text-container p {
+  font-size:  1rem;
+  margin-bottom:  2rem;
 }
 
 .button-container {
-  z-index: 10000;
-  position: relative;
-  left: 10rem;
+  position: absolute;
+  bottom:  20px;
+  left:  50%;
+  transform: translateX(-50%);
+  z-index:  10;
 }
 
 button {
-  margin: 10px;
-  width: 6rem;
-  height: 3rem;
-  font-size: 16px;
-  background-color: var(--ShinyShamrock);
-  color: var(--White);
+  background-color: var(--TeaGreen);
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius:  5px;
+  padding:  10px  20px;
   cursor: pointer;
-  z-index: 10000;
-  transition: 0.5s;
-  position: relative;
-  opacity: 50%;
-  left: 8rem;
+  transition: background-color  0.3s ease;
+  margin:  0  5px;
 }
 
 button:hover {
-  background-color: var(--PastelGreen);
-  transform: scale(1.05);
-  opacity: 100%;
+  background-color: var(--ShinyShamrock);
 }
 
-  @media (max-width: 992px) {
-  .slider-image-container {
-    width: 100vw;
-    height: 70vh;
+@media (max-width:  768px) {
+  .text-container h1 {
+    font-size:  2rem;
   }
 
-  button {
+  .text-container h2 {
+    font-size:  1.2rem;
+  }
+
+  .text-container p {
+    font-size:  0.8rem;
+  }
+  button{
     display: none;
   }
-}
-
-@media (max-width: 721px) {
-  .text-container {
-    color: var(--Black);
-    width: 100%;
-    height: auto; 
-    top: 30rem;
-  }
-
-  .slider-image-container {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .slider-image {
-    left: 0;
-    width: 100vw;
-  }
-
 }
 </style>

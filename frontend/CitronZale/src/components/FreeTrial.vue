@@ -25,10 +25,14 @@ export default{
     display: flex;
     justify-content: center;
     align-content: center;
-    padding: 1rem;
+    padding: 3rem;
+    left: -1%;
+    position: relative;
 }
 
-
+.container input{
+  width: 22rem;
+}
 
   button {
   --b: 3px;   

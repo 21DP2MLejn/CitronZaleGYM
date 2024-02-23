@@ -57,7 +57,7 @@ body{
 
 .reasons{
   position: relative;
-  top: 51rem;
+  top: -10rem;
   left: -3rem;
   padding: 0;
   margin: 0;
@@ -65,8 +65,8 @@ body{
 
 .introduction{
   position: relative;
-  top: 50rem;
-  left: 0;
+  top: -2rem;
+  left: -1rem;
   margin: 0;
   padding: 0;
   display: flex;
@@ -74,7 +74,7 @@ body{
 }
 
 .footer{
-  top: 60rem;
+  top: -2rem;
   position: relative;
 }
 
