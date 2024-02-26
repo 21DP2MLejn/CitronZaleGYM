@@ -1,32 +1,109 @@
 <template>
-<body>
-  <div>
-    <LoginBox
-      :title="'Register Page'"
-      :loginButtonText="'Sign Up'"
-      :loginLinkText="'Already have an account? Login.'"
-      :isRegister="true"
-    />
-  </div>
-  <div class="background">
-    <div class="image-container">
+  <div class="login-box">
+    <h2>{{ title }}</h2>
+    <form @submit.prevent="register">
+      <input type="email" placeholder="Email" v-model="email" required>
+      <br>
+      <input type="text" placeholder="Username" v-model="username" required>
+      <br>
+      <input type="password" placeholder="Password" v-model="password" required>
+      <br>
+      <router-link to="/"><button>{{ registerButtonText }}</button></router-link>
+      <br>
+    </form>
+    <div class="links-container">
+      <router-link to="/login">{{ loginLinkText }}</router-link>
     </div>
   </div>
-</body>
 </template>
 
 <script>
-import LoginBox from '../components/LoginRegisterbox.vue';
-
 export default {
-  components: {
-    LoginBox,
+  data() {
+    return {
+      title: 'Register',
+      email: '',
+      username: '',
+      password: '',
+      registerButtonText: 'Register',
+      loginLinkText: 'Already have an account? Login here',
+    };
   },
-}
-
+  methods: {
+    register() {
+      
+    },
+  },
+};
 </script>
 
 <style scoped>
 
+.login-box {
+  width:   320px;
+  padding:   20px;
+  background-color: white;
+  border-radius:   10px;
+  box-shadow:   0   0   10px rgba(0,   0,   0,   0.1);
+  margin:   50px auto;
+  max-height:  400px; 
+}
 
+.login-box h2 {
+  text-align: center;
+  color: var(--TeaGreen);
+  margin-bottom:   20px;
+}
+
+.login-box input {
+  width:   94%;
+  padding:   10px;
+  margin-bottom:   10px;
+  border:   1px solid var(--TeaGreen);
+  border-radius:   5px;
+}
+
+.login-box button {
+  width:   100%;
+  padding:   10px;
+  background-color: var(--TeaGreen);
+  color: white;
+  border: none;
+  border-radius:   5px;
+  cursor: pointer;
+  transition: background-color   0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: var(--ShinyShamrock);
+}
+
+.links-container {
+  text-align: center;
+}
+
+.links-container a {
+  color: var(--TeaGreen);
+  text-decoration: none;
+  margin:   0.5rem;
+}
+
+.links-container a:hover {
+  color: var(--ShinyShamrock);
+}
+
+.forgot-password {
+  font-size:   0.8rem;
+  color: var(--TeaGreen);
+}
+
+
+@media (max-width: 768px) {
+
+  .login-box{
+    position: relative;
+    top: 12rem;
+  }
+  
+}
 </style>
