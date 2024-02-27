@@ -51,6 +51,7 @@ export default {
   z-index:  10000000;
   text-align: center;
   box-shadow:  0  0  10px rgba(0,  0,  0,  0.1);
+  min-height: 20rem;
   height: auto;
 }
 
@@ -83,6 +84,7 @@ export default {
   .section {
     flex:  1;
     max-width:  45%;
+    height: auto;
   }
 
   .introduction-image {

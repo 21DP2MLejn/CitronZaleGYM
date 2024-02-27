@@ -1,22 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import WelcomePage from '../views/Welcome.vue'
-import LoginPage from '../views/Login.vue'
-import RegisterPage from '../views/Register.vue'
-import ForgotPassword from '../views/ForgotPw.vue'
-import Prices from '../views/Prices.vue'
-import AboutUs from '../views/AboutUs.vue'
-import Schedule from '../views/Schedule.vue'
-import Trainings from '../views/Trainings.vue'
-import PersonalTrainings from '../views/PersonalTrainings.vue'
-import GroupTrainings from '../views/GroupTrainings.vue'
-import Trainers from '../views/Trainers.vue'
-import Clubs from '../views/Clubs.vue'
-import Profile from '../views/Profile.vue'
-import Checkoutdetails from '../views/CheckOutDetails.vue'
-import BolderajaClub from '../views/BolderajaClub.vue'
-import TeikaClub from '../views/TeikaClub.vue'
-import OgreClub from '../views/OgreClub.vue'
-
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,91 +6,89 @@ const router = createRouter({
     {
       path: '/',
       name: 'welcome',
-      component: WelcomePage
+      component: () => import('../views/Welcome.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginPage
+      component: () => import('../views/Login.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: RegisterPage
+      component: () => import('../views/Register.vue')
     },
     {
       path: '/forgot-password',
       name: 'forgot-password',
-      component: ForgotPassword
+      component: () => import('../views/ForgotPw.vue')
     },
     {
       path: '/prices',
       name: 'prices',
-      component: Prices
+      component: () => import('../views/Prices.vue')
     },
     {
       path: '/about-us',
       name: 'aboutus',
-      component: AboutUs
+      component: () => import('../views/AboutUs.vue')
     },
     {
       path: '/schedule',
       name: 'schedule',
-      component: Schedule
+      component: () => import('../views/Schedule.vue')
     },
     {
       path: '/trainings',
       name: 'trainings',
-      component: Trainings
+      component: () => import('../views/Trainings.vue')
     },
     {
       path: '/trainers',
       name: 'trainers',
-      component: Trainers
+      component: () => import('../views/Trainers.vue')
 
     },
     {
       path: '/personal-trainings',
       name: 'personal-trainings',
-      component: PersonalTrainings
+      component: () => import('../views/PersonalTrainings.vue')
     },
     {
       path: '/group-trainings',
       name: 'group-trainings',
-      component: GroupTrainings
+      component: () => import('../views/GroupTrainings.vue')
     },
     {
       path: '/clubs',
       name: 'clubs',
-      component: Clubs
+      component: () => import('../views/Clubs.vue')
     },
     {
       path: '/profile',
       name: 'profile',
-      component: Profile
+      component: () => import('../views/Profile.vue')
     },
     {
       path: '/checkout-details',
       name: 'checkout-details',
-      component: Checkoutdetails
+      component: () => import('../views/CheckOutDetails.vue')
     },
     {
       path: '/bolderaja-club',
       name: 'bolderaja-club',
-      component: BolderajaClub
+      component: () => import('../views/BolderajaClub.vue')
     },
     {
       path: '/teika-club',
       name: 'teika-club',
-      component: TeikaClub
+      component: () => import('../views/TeikaClub.vue')
     },
     {
       path: '/ogre-club',
       name: 'ogre-club',
-      component: OgreClub
+      component: () => import('../views/OgreClub.vue')
     },
-
-
   ]
 })
 
