@@ -8,7 +8,7 @@
       <br>
       <input type="password" placeholder="Password" v-model="password" required>
       <br>
-      <router-link to="/"><button>{{ registerButtonText }}</button></router-link>
+      <button>{{ registerButtonText }}</button>
       <br>
     </form>
     <div class="links-container">
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -30,8 +32,18 @@ export default {
     };
   },
   methods: {
-    register() {
-      
+    async register() {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/register', {
+          email: this.email,
+          username: this.username,
+          password: this.password,
+        });
+
+        console.log(response.data); 
+      } catch (error) {
+        console.error('Error during registration:', error);
+      }
     },
   },
 };

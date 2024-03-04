@@ -6,7 +6,7 @@
       <br>
       <input type="password" placeholder="Password" v-model="password" required>
       <br>
-      <router-link to="/"><button>{{ loginButtonText }}</button></router-link>
+      <button type="submit">{{ loginButtonText }}</button>
       <br>
     </form>
     <div class="links-container">
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -29,12 +31,21 @@ export default {
     };
   },
   methods: {
-    login() {
-      
+    async login() {
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/login', {
+        email: this.email,
+        password: this.password,
+      });
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error during login:', error);
+      }
     },
   },
 };
 </script>
+
 
 <style scoped>
   
