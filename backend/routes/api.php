@@ -21,8 +21,11 @@ use App\Http\Controllers\Api\ApiController;
 
 
 // Open routes
-Route::post('/register', [ApiController::class, 'register']);
-Route::post('/login', [ApiController::class, 'login']);
+Route::middleware(['cors'])->group(function () {
+    Route::post('/register', [ApiController::class, 'register']);
+    Route::post('/login', [ApiController::class, 'login']);
+});
+
 
 // Protected routes
 Route::group([
@@ -31,3 +34,4 @@ Route::group([
     Route::get('/profile', [ApiController::class, 'profile']);
     Route::get('/logout', [ApiController::class, 'logout']);
 });
+

@@ -34,12 +34,11 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/register', {
+        const response = await axios.post('http://127.0.0.1:8000/api/register', {
           email: this.email,
           username: this.username,
           password: this.password,
-        });
-
+          });
         console.log(response.data); 
       } catch (error) {
         console.error('Error during registration:', error);
