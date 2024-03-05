@@ -18,8 +18,8 @@ class ApiController extends Controller
     public function register(Request $request){
         //Data validation
         $request->validate([
-            'name' => 'required|string',
             'email' => 'required|email|unique:users',
+            'name' => 'required|string',
             'password' => 'required|confirmed'
         ]);
         //Create user

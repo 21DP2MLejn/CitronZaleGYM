@@ -32,17 +32,28 @@ export default {
   },
   methods: {
     async login() {
-      try {
-        const response = await axios.post('http://127.0.0.1:8000/login', {
-        email: this.email,
-        password: this.password,
-      });
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error during login:', error);
+ try {
+    const response = await axios.post('http://127.0.0.1:8000/api/login', {
+      email: this.email,
+      password: this.password,
+    });
+      if (response.status === 200) {
+        if (response.data.status) {
+          this.$router.push('/');
+        } else {
+          console.error('Login failed:', response.data.message);
+          alert("Login failed");
+        }
+      } else {
+        console.error('Unexpected response status:', response.status);
+        alert('Unexpected response status')
       }
-    },
+  } catch (error) {
+      console.error('Error during login:', error);
+      alert('Error during login');
+  }
   },
+},
 };
 </script>
 

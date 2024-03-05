@@ -4,9 +4,11 @@
     <form @submit.prevent="register">
       <input type="email" placeholder="Email" v-model="email" required>
       <br>
-      <input type="text" placeholder="Username" v-model="username" required>
+      <input type="text" placeholder="Name" v-model="name" required>
       <br>
       <input type="password" placeholder="Password" v-model="password" required>
+      <br>
+      <input type="password" placeholder="Confirm Password" v-model="password_confirmation" required>
       <br>
       <button>{{ registerButtonText }}</button>
       <br>
@@ -25,8 +27,9 @@ export default {
     return {
       title: 'Register',
       email: '',
-      username: '',
+      name: '',
       password: '',
+      password_confirmation: '',
       registerButtonText: 'Register',
       loginLinkText: 'Already have an account? Login here',
     };
@@ -34,12 +37,12 @@ export default {
   methods: {
     async register() {
       try {
-        const response = await axios.post('http://127.0.0.1:8000/register', {
+        const response = await axios.post('http://127.0.0.1:8000/api/register', {
           email: this.email,
-          username: this.username,
+          name: this.name,
           password: this.password,
-        });
-
+          password_confirmation: this.password_confirmation,
+          });
         console.log(response.data); 
       } catch (error) {
         console.error('Error during registration:', error);
