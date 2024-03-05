@@ -46,6 +46,7 @@ export default {
         console.log(response.data); 
       } catch (error) {
         console.error('Error during registration:', error);
+        alert('Error during registration')
       }
     },
   },
