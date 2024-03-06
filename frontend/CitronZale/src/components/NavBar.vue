@@ -15,16 +15,78 @@
       <li><router-link to="/about-us">AboutUs</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li class="join-button">
+      <li class="join-button" v-if="!isLoggedin">
         <router-link to="/login">Join</router-link>
       </li>
-    </ul>
+      <li class="logout-button" v-if="isLoggedin">
+        <router-link to="/login">Log Out</router-link>
+      </li>
+    </ul> 
   </div>
 </template>
 
+<script>
+import axios from 'axios';
+
+export default {
+ name: 'NavBar',
+ data() {
+    return {
+      isNavOpen: false,
+      isLoggedin: false,
+    };
+ },
+ methods: {
+ toggleNav() {
+    this.isNavOpen = !this.isNavOpen;
+ },
+ logout() {
+    axios.post('/api/logout').then(response => {
+      console.log(response.data.message);
+      localStorage.removeItem('authToken');
+      this.$router.push('/login');
+      console.log('Logged out successfully');
+    }).catch(error => {
+      console.log(error);
+      alert('Problem with logging out');
+    });
+ },
+ async checkLoginStatus() {
+    try {
+      const response = await fetch('/api/user/status', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      });
+      if (response.ok) {
+        this.isLoggedin = true;
+      } else {
+        this.isLoggedin = false;
+      }
+    } catch (error) {
+      console.error('Error checking login status:', error);
+      this.isLoggedin = false;
+    }
+ }
+},
+
+ mounted() {
+  this.checkLoginStatus();
+  this.$nextTick(() => {
+        if (window.Laravel) {
+            axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
+        } else {
+            console.error('window.Laravel is not defined');
+        }
+    });
+}
+};
+</script>
+
 <style scoped>
 
-.join-button{
+.join-button, .logout-button{
   position: relative;
   left: 63rem;
 }
@@ -167,18 +229,3 @@ li a.router-link-active {
 }
 </style>
 
-<script>
-export default {
-  name: 'NavBar',
-  data() {
-    return {
-      isNavOpen: false,
-    };
-  },
-  methods: {
-    toggleNav() {
-      this.isNavOpen = !this.isNavOpen;
-    },
-  },
-};
-</script>
