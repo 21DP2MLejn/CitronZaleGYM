@@ -13,7 +13,6 @@ class SetCorsHeaders
         header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
         header("Access-Control-Allow-Headers: Content-Type, Authorization");
         if ($request->getMethod() == 'OPTIONS') {
-            // Respond successfully to OPTIONS requests
             http_response_code(200);
             exit;
         }

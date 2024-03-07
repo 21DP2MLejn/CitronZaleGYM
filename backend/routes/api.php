@@ -32,6 +32,6 @@ Route::group([
     "middleware" => "auth:api"
 ], function (){
     Route::get('/profile', [ApiController::class, 'profile']);
-    Route::get('/logout', [ApiController::class, 'logout']);
+    Route::post('/logout', [ApiController::class, 'logout']);
 });
 

@@ -32,27 +32,31 @@ export default {
   },
   methods: {
     async login() {
- try {
-    const response = await axios.post('http://127.0.0.1:8000/api/login', {
-      email: this.email,
-      password: this.password,
-    });
-      if (response.status === 200) {
-        if (response.data.status) {
-          this.$router.push('/');
-        } else {
-          console.error('Login failed:', response.data.message);
-          alert("Login failed");
-        }
-      } else {
-        console.error('Unexpected response status:', response.status);
-        alert('Unexpected response status')
+      try {
+          const response = await axios.post('http://127.0.0.1:8000/api/login', {
+            email: this.email,
+            password: this.password,
+          });
+          if (response.status === 200) {
+            if (response.data.status) {
+              // Save the token to local storage
+              localStorage.setItem('authToken', response.data.token);
+              axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+              this.$router.push('/');
+            } else {
+              console.error('Login failed:', response.data.message);
+              alert("Login failed");
+            }
+          } else {
+            console.error('Unexpected response status:', response.status);
+            alert('Unexpected response status');
+          }
+      } catch (error) {
+          console.error('Error during login:', error);
+          alert('Error during login');
       }
-  } catch (error) {
-      console.error('Error during login:', error);
-      alert('Error during login');
-  }
-  },
+},
+
 },
 };
 </script>
