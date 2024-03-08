@@ -11,15 +11,23 @@ Front-end stack:
 
 Back-end stack:
   - PHP
-  - Laravel 
+  - Laravel
+  - Laragon (MySQL) 
 
 
-# Run this program
+# Run this application through terminal
+**!** To run this program you must have composer and node.js installed in your system. Composer is a dependency management tool for PHP. Node.js to be able to run npm commands
+
 
 For front-end:
+  - cd CitronZaleGYM/frontend/CitronZale
   - npm install
   - npm run dev
 
 For back-end:
+  - Configure the .env file to meet your needs to run this application. Can be found in CitronZaleGYM/backend/.env
+  - cd CitronZaleGYM/backend
   - composer install
-  - php artisan serve
+  - run your database
+  - php artisan migrate
+  - php artisan serve (default URL http://127.0.0.1:8000)
