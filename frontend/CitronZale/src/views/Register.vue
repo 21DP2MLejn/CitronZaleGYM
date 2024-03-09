@@ -43,7 +43,8 @@ export default {
           password: this.password,
           password_confirmation: this.password_confirmation,
           });
-        console.log(response.data); 
+        console.log(response.data);
+        this.$router.push('/login'); 
       } catch (error) {
         console.error('Error during registration:', error);
         alert('Error during registration')

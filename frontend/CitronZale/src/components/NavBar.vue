@@ -15,10 +15,10 @@
       <li><router-link to="/about-us">AboutUs</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li class="join-button" v-if="!isLoggedin">
+      <li class="join-button" v-if="isLoggedin">
         <router-link to="/login">Join</router-link>
       </li>
-      <li class="logout-button" v-if="isLoggedin">
+      <li class="logout-button" v-if="!isLoggedin">
         <a href="#" @click.prevent="logout">Log Out</a>
       </li>
     </ul> 
@@ -45,28 +45,32 @@ export default {
       axios.post('http://127.0.0.1:8000/api/logout').then(response => {
           console.log(response.data.message);
           this.$router.push('/login');
+          this.forceUpdate(); // Force update to reflect the change
       }).catch(error => {
           console.error('Error logging out:', error);
           alert('Problem with logging out');
       });
     },
     async checkLoginStatus() {
-      try {
-        const response = await fetch('/api/user/status', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-          }
-        });
-        if (response.ok) {
-          this.isLoggedin = true;
-        } else {
-          this.isLoggedin = false;
-        }
-      } catch (error) {
-        console.error('Error checking login status:', error);
+      const token = localStorage.getItem('authToken');
+      if (!token) {
         this.isLoggedin = false;
+        return;
       }
+      try {
+          const response = await axios.get('http://127.0.0.1:8000/api/user/status', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          this.isLoggedin = response.data.isLoggedin;
+      } catch (error) {
+          console.error('Error checking login status:', error);
+          this.isLoggedin = false; 
+      }
+    },
+    forceUpdate() {
+      this.$forceUpdate(); 
     }
  },
  mounted() {

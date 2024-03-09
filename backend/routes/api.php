@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\ApiController;
 Route::middleware(['cors'])->group(function () {
     Route::post('/register', [ApiController::class, 'register']);
     Route::post('/login', [ApiController::class, 'login']);
+    Route::get('/user/status', [ApiController::class, 'checkLoginStatus']);
 });
 
 
