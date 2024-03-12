@@ -46,7 +46,7 @@ export default {
           console.log(response.data.message);
           this.$router.push('/login');
           this.forceUpdate();
-          this.isLoggedin = true
+          this.isLoggedin = false
       }).catch(error => {
           console.error('Error logging out:', error);
           alert('Problem with logging out');

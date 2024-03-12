@@ -22,6 +22,7 @@ class ApiController extends Controller
             'email' => 'required|email|unique:users',
             'name' => 'required|string',
             'lastname' => 'required|string',
+            'phonenumber' => 'required|string|max:11',
             'password' => 'required|confirmed',
 
         ]);
@@ -29,6 +30,7 @@ class ApiController extends Controller
         User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
+            'phonenumber'=>$request->phonenumber,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);

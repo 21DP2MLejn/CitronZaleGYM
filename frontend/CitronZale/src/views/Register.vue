@@ -8,6 +8,8 @@
       <br>
       <input type="text" placeholder="Last Name" v-model="lastname" required>
       <br>
+      <input type="text" placeholder="Phone Number" v-model="phonenumber" required>
+      <br>
       <input type="password" placeholder="Password" v-model="password" required>
       <br>
       <input type="password" placeholder="Confirm Password" v-model="password_confirmation" required>
@@ -31,6 +33,7 @@ export default {
       email: '',
       name: '',
       lastname: '',
+      phonenumber:'',
       password: '',
       password_confirmation: '',
       registerButtonText: 'Register',
@@ -44,6 +47,7 @@ export default {
           email: this.email,
           name: this.name,
           lastname: this.lastname,
+          phonenumber: this.phonenumber,
           password: this.password,
           password_confirmation: this.password_confirmation,
         });

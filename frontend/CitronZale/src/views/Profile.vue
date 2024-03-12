@@ -6,7 +6,7 @@
     <div class="main-container">
       <div id="container">
         <div class="greetings">
-          <h1>Hello, {{userName}}</h1>  
+          <h1>Hello, {{user.name}}</h1>  
         </div>
         <div class="profile-picture"></div>
         <div class="user-details">
@@ -16,7 +16,7 @@
         </div>
         <div class="user-contact">
             <input type="text" class="email" v-model="user.email" placeholder="E-mail" readonly>
-            <input type="text" class="phone-number" placeholder="Phone Number">
+            <input type="text" class="phone-number" v-model="user.phonenumber" placeholder="Phone Number" readonly>
         </div>
         <div class="user-guardian">
             <input type="text" class="guardian-name" placeholder="Guardian Name">
@@ -45,6 +45,7 @@ export default {
         name: '',
         lastname: '',
         email: '',
+        phonenumber:'',
       },
     };
   },
