@@ -26,7 +26,7 @@ For front-end:
   - npm run dev,
 
 For back-end:
-  - Configure the .env file to meet your needs to run this application. Can be found in CitronZaleGYM/backend/.env,
+  - Configure the .env file to meet your needs to run this application (create it first). Can be found in CitronZaleGYM/backend/.env,
   - cd CitronZaleGYM/backend,
   - composer install,
   - run your database,
