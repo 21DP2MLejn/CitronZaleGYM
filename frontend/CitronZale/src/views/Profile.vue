@@ -10,12 +10,12 @@
         </div>
         <div class="profile-picture"></div>
         <div class="user-details">
-            <input type="text" class="name" placeholder="Name">
-            <input type="text" class="lastname" placeholder="Last Name">
+            <input type="text" class="name" v-model="user.name" placeholder="Name" readonly>
+            <input type="text" class="lastname" v-model="user.lastname" placeholder="Last Name" readonly>
             <input type="date" class="birthdate" placeholder="Birthdate">
         </div>
         <div class="user-contact">
-            <input type="text" class="email" placeholder="E-mail">
+            <input type="text" class="email" v-model="user.email" placeholder="E-mail" readonly>
             <input type="text" class="phone-number" placeholder="Phone Number">
         </div>
         <div class="user-guardian">
@@ -31,26 +31,34 @@
 </template>
 
 <script>
+
 import NavBar from '../components/NavBar.vue';
+import axios from 'axios';
 
-export default{
-    components:{
+export default {
+  components: {
     NavBar,
-},
-data(){
-    return{
-        country: false,
-        userName: ''
+  },
+  data() {
+    return {
+      user: {
+        name: '',
+        lastname: '',
+        email: '',
+      },
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/profile');
+      this.user = response.data.data;
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+      alert('problem with displaying data')
+      
     }
-},
-method:{
-    ShowCountry(){
-        this.country = !this.country;
-
-    }
-}
-
-}
+  }
+};
 </script>
 
 <style scoped>

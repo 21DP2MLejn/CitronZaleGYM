@@ -16,15 +16,19 @@ class ApiController extends Controller
 
     //Register API
     public function register(Request $request){
+        \Log::info('Incoming request data:', $request->all());
         //Data validation
         $request->validate([
             'email' => 'required|email|unique:users',
             'name' => 'required|string',
-            'password' => 'required|confirmed'
+            'lastname' => 'required|string',
+            'password' => 'required|confirmed',
+
         ]);
         //Create user
         User::create([
             'name' => $request->name,
+            'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
@@ -94,12 +98,14 @@ class ApiController extends Controller
                 'message' => 'User is logged in',
                 'isLoggedin' => true
             ]);
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'User is not logged in',
+                'isLoggedin' => false
+            ]);
         }
 
-        return response()->json([
-            'status' => false,
-            'message' => 'User is not logged in',
-            'isLoggedin' => false
-        ]);
+
     }
 }

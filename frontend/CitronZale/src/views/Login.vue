@@ -39,7 +39,6 @@ export default {
           });
           if (response.status === 200) {
             if (response.data.status) {
-              // Save the token to local storage
               localStorage.setItem('authToken', response.data.token);
               axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
               this.$router.push('/');
@@ -55,9 +54,8 @@ export default {
           console.error('Error during login:', error);
           alert('Error during login');
       }
-},
-
-},
+    },
+  },
 };
 </script>
 

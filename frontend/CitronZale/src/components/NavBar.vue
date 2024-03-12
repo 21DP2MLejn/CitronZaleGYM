@@ -45,7 +45,8 @@ export default {
       axios.post('http://127.0.0.1:8000/api/logout').then(response => {
           console.log(response.data.message);
           this.$router.push('/login');
-          this.forceUpdate(); // Force update to reflect the change
+          this.forceUpdate();
+          this.isLoggedin = true
       }).catch(error => {
           console.error('Error logging out:', error);
           alert('Problem with logging out');

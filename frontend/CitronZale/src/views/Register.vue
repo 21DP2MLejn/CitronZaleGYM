@@ -6,6 +6,8 @@
       <br>
       <input type="text" placeholder="Name" v-model="name" required>
       <br>
+      <input type="text" placeholder="Last Name" v-model="lastname" required>
+      <br>
       <input type="password" placeholder="Password" v-model="password" required>
       <br>
       <input type="password" placeholder="Confirm Password" v-model="password_confirmation" required>
@@ -28,6 +30,7 @@ export default {
       title: 'Register',
       email: '',
       name: '',
+      lastname: '',
       password: '',
       password_confirmation: '',
       registerButtonText: 'Register',
@@ -40,14 +43,15 @@ export default {
         const response = await axios.post('http://127.0.0.1:8000/api/register', {
           email: this.email,
           name: this.name,
+          lastname: this.lastname,
           password: this.password,
           password_confirmation: this.password_confirmation,
-          });
+        });
         console.log(response.data);
         this.$router.push('/login'); 
       } catch (error) {
         console.error('Error during registration:', error);
-        alert('Error during registration')
+        alert('Error during registration');
       }
     },
   },
@@ -63,7 +67,7 @@ export default {
   border-radius:   10px;
   box-shadow:   0   0   10px rgba(0,   0,   0,   0.1);
   margin:   50px auto;
-  max-height:  400px; 
+  max-height:  600px;
 }
 
 .login-box h2 {
