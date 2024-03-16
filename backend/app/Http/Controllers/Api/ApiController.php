@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 
 
@@ -15,31 +16,35 @@ class ApiController extends Controller
     //Post
 
     //Register API
-    public function register(Request $request){
+
+    public function register(Request $request) {
         \Log::info('Incoming request data:', $request->all());
-        //Data validation
+    
+        // Data validation
         $request->validate([
             'email' => 'required|email|unique:users',
             'name' => 'required|string',
             'lastname' => 'required|string',
+            'birthdate' => 'required|date_format:Y-m-d',
             'phonenumber' => 'required|string|max:11',
             'password' => 'required|confirmed',
-
         ]);
-        //Create user
+    
+        // Create user
         User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
-            'phonenumber'=>$request->phonenumber,
+            'birthdate' => Carbon::parse($request->birthdate),
+            'phonenumber' => $request->phonenumber,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-
+    
         return response()->json([
             "status" => true,
-            "message" => 'User created succesfully es apsolu'
+            "message" => 'User created successfully'
         ], 201);
-    }   
+    } 
     //Login API
     public function login(Request $request){
         $request->validate([

@@ -8,6 +8,8 @@
       <br>
       <input type="text" placeholder="Last Name" v-model="lastname" required>
       <br>
+      <input type="date" id="birthdate" v-model="birthdate" placeholder="Birth Date" required>
+      <br>
       <input type="text" placeholder="Phone Number" v-model="phonenumber" required>
       <br>
       <input type="password" placeholder="Password" v-model="password" required>
@@ -25,6 +27,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   data() {
@@ -33,6 +36,7 @@ export default {
       email: '',
       name: '',
       lastname: '',
+      birthdate: '',
       phonenumber:'',
       password: '',
       password_confirmation: '',
@@ -42,11 +46,13 @@ export default {
   },
   methods: {
     async register() {
+      const formattedBirthdate = moment(this.birthdate).format('YYYY-MM-DD');
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/register', {
           email: this.email,
           name: this.name,
           lastname: this.lastname,
+          birthdate: formattedBirthdate,
           phonenumber: this.phonenumber,
           password: this.password,
           password_confirmation: this.password_confirmation,

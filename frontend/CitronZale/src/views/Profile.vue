@@ -12,7 +12,7 @@
         <div class="user-details">
             <input type="text" class="name" v-model="user.name" placeholder="Name" readonly>
             <input type="text" class="lastname" v-model="user.lastname" placeholder="Last Name" readonly>
-            <input type="date" class="birthdate" placeholder="Birthdate">
+            <input type="date" class="birthdate" v-model="user.birthdate" placeholder="Birthdate">
         </div>
         <div class="user-contact">
             <input type="text" class="email" v-model="user.email" placeholder="E-mail" readonly>
@@ -46,6 +46,7 @@ export default {
         lastname: '',
         email: '',
         phonenumber:'',
+        birthdate:'',
       },
     };
   },
