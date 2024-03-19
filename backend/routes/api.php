@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,7 +25,7 @@ use App\Http\Controllers\Api\ApiController;
 Route::middleware(['cors'])->group(function () {
     Route::post('/register', [ApiController::class, 'register']);
     Route::post('/login', [ApiController::class, 'login']);
-    Route::get('/user/status', [ApiController::class, 'checkLoginStatus']);
+    Route::get('/check-login', [ApiController::class, 'checkLoginStatus']);
 });
 
 
@@ -35,4 +36,3 @@ Route::group([
     Route::get('/profile', [ApiController::class, 'profile']);
     Route::post('/logout', [ApiController::class, 'logout']);
 });
-

@@ -18,8 +18,6 @@ class ApiController extends Controller
     //Register API
 
     public function register(Request $request) {
-        \Log::info('Incoming request data:', $request->all());
-    
         // Data validation
         $request->validate([
             'email' => 'required|email|unique:users',
@@ -30,21 +28,57 @@ class ApiController extends Controller
             'password' => 'required|confirmed',
         ]);
     
+        // Parse birthdate
+        $birthdate = Carbon::parse($request->birthdate);
+        
+        // Check age
+        $age = $birthdate->age;
+    
+        // Determine if guardian data is needed
+        $guardianDataNeeded = $age < 18;
+    
         // Create user
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
-            'birthdate' => Carbon::parse($request->birthdate),
+            'birthdate' => $birthdate,
             'phonenumber' => $request->phonenumber,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            // Remove needs_guardian_data column
         ]);
     
+        // If guardian data is needed
+        if ($guardianDataNeeded) {
+            // Validate and save guardian data
+            $request->validate([
+                'guardian_name' => 'required|string',
+                'guardian_lastname' => 'required|string',
+                'guardian_email' => 'required|email',
+            ]);
+    
+            // Update user with guardian data
+            $user->update([
+                'guardian_name' => $request->guardian_name,
+                'guardian_lastname' => $request->guardian_lastname,
+                'guardian_email' => $request->guardian_email,
+            ]);
+    
+            // Return a response indicating that guardian data has been saved
+            return response()->json([
+                'status' => true,
+                'message' => 'User created successfully. Guardian data has been saved.',
+                'user_id' => $user->id,
+            ], 201);
+        }
+    
+        // If user is 18 or older, return success response
         return response()->json([
-            "status" => true,
-            "message" => 'User created successfully'
+            'status' => true,
+            'message' => 'User created successfully.',
+            'user_id' => $user->id,
         ], 201);
-    } 
+    }
     //Login API
     public function login(Request $request){
         $request->validate([

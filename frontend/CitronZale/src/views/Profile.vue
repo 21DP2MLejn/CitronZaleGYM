@@ -19,9 +19,9 @@
             <input type="text" class="phone-number" v-model="user.phonenumber" placeholder="Phone Number" readonly>
         </div>
         <div class="user-guardian">
-            <input type="text" class="guardian-name" placeholder="Guardian Name">
-            <input type="text" class="guardian-lastname" placeholder="Guardian Last Name">
-            <input type="text" class="guardian-email" placeholder="Guardian E-mail">
+            <input type="text" class="guardian-name" v-model="user.guardian_name" placeholder="Guardian Name" readonly>
+            <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" placeholder="Guardian Last Name" readonly>
+            <input type="text" class="guardian-email" v-model="user.guardian_email" placeholder="Guardian E-mail" readonly>
             <input type="text" class="guardian-country" placeholder="Country" v-show="country">
             <button id="choosecountry" @click="ShowCountry">Country</button>
         </div>
@@ -47,6 +47,9 @@ export default {
         email: '',
         phonenumber:'',
         birthdate:'',
+        guardian_name:'',
+        guardian_lastname:'',
+        guardian_email: '',
       },
     };
   },

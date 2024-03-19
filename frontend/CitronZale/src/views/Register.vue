@@ -8,7 +8,14 @@
       <br>
       <input type="text" placeholder="Last Name" v-model="lastname" required>
       <br>
-      <input type="date" id="birthdate" v-model="birthdate" placeholder="Birth Date" required>
+      <input type="date" id="birthdate" v-model="birthdate" placeholder="Birth Date" @change="ageVerification" required>
+      <div class="guardian-data" v-if="isUnder18">
+        <input type="text" id="guardian-name" placeholder="Guardian Name" v-model="guardianName" required>
+        <br>
+        <input type="text" id="guardian-last-name" placeholder="Guardian Last Name" v-model="guardianLastName" required>
+        <br>
+        <input type="email" id="guardian-email" placeholder="Guardian Email" v-model="guardianEmail" required>
+      </div>
       <br>
       <input type="text" placeholder="Phone Number" v-model="phonenumber" required>
       <br>
@@ -16,7 +23,7 @@
       <br>
       <input type="password" placeholder="Confirm Password" v-model="password_confirmation" required>
       <br>
-      <button>{{ registerButtonText }}</button>
+      <button :disabled="isUnder18 && !guardianName && !guardianLastName && !guardianEmail">{{ registerButtonText }}</button>
       <br>
     </form>
     <div class="links-container">
@@ -40,15 +47,32 @@ export default {
       phonenumber:'',
       password: '',
       password_confirmation: '',
+      guardianName: '',
+      guardianLastName: '', 
+      guardianEmail: '', 
       registerButtonText: 'Register',
       loginLinkText: 'Already have an account? Login here',
+      isUnder18: false
     };
   },
   methods: {
+    ageVerification() {
+      var birthdateInput = document.getElementById("birthdate").value;
+      var birthdate = new Date(birthdateInput);
+      var age = this.calculateAge(birthdate);
+
+      this.isUnder18 = age < 18;
+    },
+    calculateAge(dob){
+      var diff_ms = Date.now() - dob.getTime();
+      var age_date = new Date(diff_ms);
+
+      return Math.abs(age_date.getUTCFullYear() - 1970);
+    },
     async register() {
       const formattedBirthdate = moment(this.birthdate).format('YYYY-MM-DD');
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/register', {
+        const userData = {
           email: this.email,
           name: this.name,
           lastname: this.lastname,
@@ -56,9 +80,18 @@ export default {
           phonenumber: this.phonenumber,
           password: this.password,
           password_confirmation: this.password_confirmation,
-        });
+        };
+
+        if (this.isUnder18) {
+          userData.guardian_name = this.guardianName;
+          userData.guardian_lastname = this.guardianLastName;
+          userData.guardian_email = this.guardianEmail;
+        }
+
+        const response = await axios.post('http://127.0.0.1:8000/api/register', userData);
         console.log(response.data);
-        this.$router.push('/login'); 
+        // Redirect to login page
+        this.$router.push('/login');
       } catch (error) {
         console.error('Error during registration:', error);
         alert('Error during registration');
@@ -77,7 +110,7 @@ export default {
   border-radius:   10px;
   box-shadow:   0   0   10px rgba(0,   0,   0,   0.1);
   margin:   50px auto;
-  max-height:  600px;
+  max-height:  730px;
 }
 
 .login-box h2 {
@@ -126,6 +159,10 @@ export default {
 .forgot-password {
   font-size:   0.8rem;
   color: var(--TeaGreen);
+}
+
+.guardian-data{
+  margin: 0 ;
 }
 
 

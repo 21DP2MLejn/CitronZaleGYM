@@ -15,10 +15,10 @@
       <li><router-link to="/about-us">AboutUs</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li class="join-button" v-if="isLoggedin">
+      <li class="join-button" v-if="!isLoggedin">
         <router-link to="/login">Join</router-link>
       </li>
-      <li class="logout-button" v-if="!isLoggedin">
+      <li class="logout-button" v-if="isLoggedin">
         <a href="#" @click.prevent="logout">Log Out</a>
       </li>
     </ul> 
@@ -46,7 +46,7 @@ export default {
           console.log(response.data.message);
           this.$router.push('/login');
           this.forceUpdate();
-          this.isLoggedin = false
+          this.isLoggedin = false;
       }).catch(error => {
           console.error('Error logging out:', error);
           alert('Problem with logging out');
@@ -54,20 +54,21 @@ export default {
     },
     async checkLoginStatus() {
       const token = localStorage.getItem('authToken');
-      if (!token) {
+      const tokenExpiration = localStorage.getItem('authTokenExpiration');
+      if (!token || new Date().getTime() > tokenExpiration) {
         this.isLoggedin = false;
         return;
       }
       try {
-          const response = await axios.get('http://127.0.0.1:8000/api/user/status', {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          this.isLoggedin = response.data.isLoggedin;
+        const response = await axios.get('http://127.0.0.1:8000/api/check-login', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        });
+        this.isLoggedin = response.data.isLoggedin; // Ensure this matches the API response structure
       } catch (error) {
-          console.error('Error checking login status:', error);
-          this.isLoggedin = false; 
+        console.error('Error checking login status:', error);
+        this.isLoggedin = false;
       }
     },
     forceUpdate() {
@@ -76,11 +77,6 @@ export default {
  },
  mounted() {
     this.checkLoginStatus();
-    if (window.Laravel) {
-      axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
-    } else {
-      console.error('window.Laravel is not defined');
-    }
  }
 };
 </script>
