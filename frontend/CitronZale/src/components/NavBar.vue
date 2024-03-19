@@ -15,10 +15,10 @@
       <li><router-link to="/about-us">AboutUs</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li class="join-button" v-if="!isLoggedin">
+      <li class="join-button" v-if="isLoggedin">
         <router-link to="/login">Join</router-link>
       </li>
-      <li class="logout-button" v-if="isLoggedin">
+      <li class="logout-button" v-if="!isLoggedin">
         <a href="#" @click.prevent="logout">Log Out</a>
       </li>
     </ul> 
