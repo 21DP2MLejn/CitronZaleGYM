@@ -112,6 +112,11 @@
            <td></td>
        </tr>
    </table>
+   <div class="button-container">
+        <button class="reservations-button" id="reservation">
+            Reserve
+        </button>
+   </div>
     </div>
     <div class="footer">
       <Footer />
@@ -122,11 +127,13 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
+import Reservations from '../components/Reservations.vue';
 
 export default{
     components:{
         NavBar,
-        Footer
+        Footer,
+        Reservations,
     }
 }
 </script>
@@ -279,6 +286,27 @@ th {
 input[type="text"] {
    width: 100%;
    box-sizing: border-box;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center; 
+}
+
+.button-container button {
+  background-color: var(--ShinyShamrock);
+  color: #fff;
+  border: none;
+  padding:   1rem   3rem;
+  border-radius:   5px;
+  cursor: pointer;
+  transition: background-color   0.3s ease;
+  position: relative;
+  top: 2rem;
+}
+
+.button-container button:hover {
+  background-color: var(--PastelGreen);
 }
 
 </style>

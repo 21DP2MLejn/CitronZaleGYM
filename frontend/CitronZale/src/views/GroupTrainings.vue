@@ -44,18 +44,20 @@
             </section>
             <section>
                 <div class="indoor-cycling container">
-                    <div id="indoor-cycling" class="card"></div>
+                    <div id="indoor-cycling" class="card">
+                        <img src="../assets/Images/indoorcycling.jpg" alt="Indoor Cycling">
+                    </div>
                     <label for="indoor-cycling">INDOOR CYCLING</label>
                 </div>
                 <div class="zumba container">
                     <div id="zumba" class="card">
-                        <img src="../assets/Images/zumba.jpg" alt="">
+                        <img src="../assets/Images/zumba.jpg" alt="Zumba">
                     </div>
                     <label for="zumba">ZUMBA</label>
                 </div>
                 <div class="circuit-training container">
                     <div id="circuit-training" class="card">
-                        <img src="../assets/Images/body-circle.jpg" alt="">
+                        <img src="../assets/Images/body-circle.jpg" alt="Circuit Training">
                     </div>
                     <label for="circuit-training">CIRCUIT TRAINING</label>
                 </div>
@@ -138,6 +140,7 @@ export default {
        margin: 2rem;
        transition: 0.5s;
        z-index: 1;
+       overflow: hidden
     }
 
    label {
@@ -166,6 +169,11 @@ export default {
         justify-content: baseline;
     }
 
+    #indoor-cycling{
+        background-image: url(../assets/Images/indoorcycling.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 
 
 

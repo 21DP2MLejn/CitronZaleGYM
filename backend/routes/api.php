@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,5 @@ Route::group([
 ], function (){
     Route::get('/profile', [ApiController::class, 'profile']);
     Route::post('/logout', [ApiController::class, 'logout']);
+    Route::post('/reserve', [ReservationController::class, 'store']);
 });
