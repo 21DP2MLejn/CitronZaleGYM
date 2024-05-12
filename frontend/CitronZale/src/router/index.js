@@ -89,6 +89,51 @@ const router = createRouter({
       name: 'ogre-club',
       component: () => import('../views/OgreClub.vue')
     },
+    {
+      path: '/group-trainings/circuit-training',
+      name: 'circuit-training',
+      component: () => import('../views/Group-trainings/Circuit-training.vue')
+    },
+    {
+      path: '/group-trainings/core-training',
+      name: 'core-training',
+      component: () => import ('../views/Group-trainings/Core-training.vue')
+    },
+    {
+      path: '/group-training/indoor-cycling',
+      name: 'indoor-cycling',
+      component: () => import('../views/Group-trainings/Indoor-cycling.vue')
+    },
+    {
+      path: '/group-training/kick-boxing',
+      name: 'kick-boxing',
+      component: () => import('../views/Group-trainings/Kick-boxing.vue')
+    },
+    {
+      path: '/group-training/pilates',
+      name: 'pilates',
+      component: () => import('../views/Group-trainings/Pilates.vue')
+    },
+    {
+      path: '/group-training/power-lifting',
+      name: 'power-lifting',
+      component: () => import('../views/Group-trainings/Power-lifting.vue')
+    },
+    {
+      path: '/group-training/stretch-and-balance',
+      name: 'stretch-and-balance',
+      component: () => import('../views/Group-trainings/Stretch-balance.vue')
+    },
+    {
+      path: '/group-training/yoga',
+      name: 'yoga',
+      component: () => import('../views/Group-trainings/Yoga.vue')
+    },
+    {
+      path: '/group-training/zumba',
+      name: 'zumba',
+      component: () => import('../views/Group-trainings/Zumba.vue')
+    },
   ]
 })
 
