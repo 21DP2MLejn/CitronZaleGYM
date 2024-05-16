@@ -14,16 +14,23 @@
                     <li>{{ list_item1 }}</li>
                     <li>{{ list_item2 }}</li>
                     <li>{{ list_item3 }}</li>
+                    <li>{{ list_item4 }}</li>
+                    <li>{{ list_item5 }}</li>
+                    <li>{{ list_item6 }}</li>
                 </ul>
             </div>
+        </div>
+        <div class="button-container">
+            <router-link to="/group-trainings" >
+                <button>Return</button>
+            </router-link>
         </div>
     </main>
 </template>
 
 <script>
-import GrouptTrainingComponentVue from './Groupt-training-component.vue'
 export default {
-    name:GrouptTrainingComponentVue,
+    name: 'Trainingdesc',
     props: {
         title: String,
         description: String,
@@ -31,6 +38,9 @@ export default {
         list_item1: String,
         list_item2: String,
         list_item3: String,
+        list_item4: String,
+        list_item5: String,
+        list_item6: String,
     }
 }
 </script>
@@ -83,5 +93,19 @@ h1 {
 
 .muscle-groups li {
     margin-bottom: 5px;
+}
+
+.button-container button {
+  background-color: var(--ShinyShamrock);
+  color: #fff;
+  border: none;
+  padding:   0.5rem   1rem;
+  border-radius:   5px;
+  cursor: pointer;
+  transition: background-color   0.3s ease;
+}
+
+.button-container button:hover {
+  background-color: var(--PastelGreen);
 }
 </style>

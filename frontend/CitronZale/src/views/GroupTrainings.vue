@@ -24,7 +24,7 @@
             <div class="flex-container">
                 <section>
                     <div class="power-lifting container">
-                        <router-link to="/powerlifting" class="card">
+                        <router-link to="/power-lifting" class="card">
                             <div id="power-lifting">
                                 <img src="../assets/Images/power-lifting.jpg" alt="powerlifting" >
                             </div>
@@ -32,7 +32,7 @@
                         <label for="power-lifting">POWER LIFTING</label>
                     </div>
                     <div class="kick-boxing container">
-                        <router-link to="/kickboxing" class="card">
+                        <router-link to="/kick-boxing" class="card">
                             <div id="kick-boxing">
                                 <img src="../assets/Images/kick-boxing.jpg" alt="kickboxing">
                             </div>
@@ -40,7 +40,7 @@
                         <label for="kick-boxing">KICK BOXING</label>
                     </div>
                     <div class="core-training container">
-                        <router-link to="/coretraining" class="card">
+                        <router-link to="/core-training" class="card">
                             <div id="core-training">
                                 <img src="../assets/Images/core-training.jpg" alt="coretraining">
                             </div>
@@ -50,7 +50,7 @@
                 </section>
                 <section>
                     <div class="indoor-cycling container">
-                        <router-link to="/indoorcycling" class="card">
+                        <router-link to="/indoor-cycling" class="card">
                             <div id="indoor-cycling">
                                 <img src="../assets/Images/indoorcycling.jpg" alt="Indoor Cycling">
                             </div>
@@ -66,7 +66,7 @@
                         <label for="zumba">ZUMBA</label>
                     </div>
                     <div class="circuit-training container">
-                        <router-link to="/circuittraining" class="card">
+                        <router-link to="/circuit-training" class="card">
                             <div id="circuit-training">
                                 <img src="../assets/Images/body-circle.jpg" alt="Circuit Training">
                             </div>
@@ -92,7 +92,7 @@
                         <label for="pilates">PILATES</label>
                     </div>
                     <div class="stretch-and-balance container">
-                        <router-link to="/stretchandbalance" class="card">
+                        <router-link to="/stretch-and-balance" class="card">
                             <div id="stretch-and-balance">
                                 <img src="../assets/Images/stretch-and-balance.jpg" alt="stretchandbalance">
                             </div>
