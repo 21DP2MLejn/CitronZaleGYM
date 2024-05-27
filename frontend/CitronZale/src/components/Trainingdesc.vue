@@ -3,8 +3,8 @@
         <div class="header-container">
             <h1>{{ title }}</h1>
         </div>
-        <div class="image-container">
-            <img src="https://via.placeholder.com/150" alt="Workout">
+        <div v-if="imageURL" class="image-container">
+            <img :src="imageURL" alt="Description Image">
         </div>
         <div class="description-container">
             <p>{{ description }}</p>
@@ -35,6 +35,7 @@ export default {
         title: String,
         description: String,
         muscle_group_description: String,
+        imageURL: String,
         list_item1: String,
         list_item2: String,
         list_item3: String,
@@ -47,65 +48,80 @@ export default {
 
 <style scoped>
 
-
 main {
     max-width: 600px;
     margin: auto;
-    padding: 20px;
+    padding: 40px;
     background-color: var(--White);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--PastelGreen);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: var(--Font), sans-serif;
+    overflow: hidden;
 }
 
 .header-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 h1 {
     color: var(--Black);
+    font-size: 2.5rem; 
+    font-weight: var(--font-bold);
 }
 
 .image-container {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .image-container img {
     max-width: 100%;
-    border-radius: 10px;
+    height: auto; 
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .description-container {
-    padding: 20px;
-    background-color: var(--LightGray);
-    border-radius: 10px;
+    padding: 40px;
+    background-color: var(--ShinyShamrock);
+    border-radius: 15px;
+    color: var(--Black);
+    font-weight: var(--font-regular);
 }
 
 .description-container p {
-    color: var(--Black);
+    margin-bottom: 20px; 
 }
 
 .muscle-groups ul {
     list-style-type: none;
     padding: 0;
+    color: var(--Black);
+    font-weight: var(--font-regular);
 }
 
 .muscle-groups li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    font-weight: var(--font-regular);
 }
 
 .button-container button {
-  background-color: var(--ShinyShamrock);
-  color: #fff;
-  border: none;
-  padding:   0.5rem   1rem;
-  border-radius:   5px;
-  cursor: pointer;
-  transition: background-color   0.3s ease;
+    background-color: var(--ShinyShamrock);
+    color: var(--White);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: var(--Font), sans-serif;
+    position: relative;
+    top: 1rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .button-container button:hover {
-  background-color: var(--PastelGreen);
+    background-color: var(--PastelGreen);
 }
 </style>

@@ -2,7 +2,8 @@
     <Trainingdesc 
         :title="pageTitle" 
         :description="pageDescription" 
-        :muscle_group_description="musclegroupDescription" 
+        :muscle_group_description="musclegroupDescription"
+        :imageURL="imageURL" 
         :list_item1="list1" 
         :list_item2="list2" 
         :list_item3="list3" 
@@ -14,6 +15,7 @@
 
 <script>
 import Trainingdesc from '../../components/Trainingdesc.vue';
+import indoorcycling from '../../assets/Images/indoorcycling.jpg';
 
 export default {
   components: {
@@ -30,6 +32,7 @@ export default {
       list4: 'Calves',
       list5: 'Core (Abdominals and Lower Back)',
       list6: 'Hip Flexors',
+      imageURL: indoorcycling
     };
   },
 };

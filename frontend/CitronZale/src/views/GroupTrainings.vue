@@ -3,18 +3,12 @@
         <div class="navbar-container">
             <NavBar />
         </div>
-    
         <div class="introduction-box-top">
             <div class="content-container">
                 <h1>GROUP TRAININGS</h1>
                 <p>"Embrace the fusion of tradition and innovation at CitronZale! Discover a blend of time-honored classics and cutting-edge workouts in our exciting new GROUP TRAINING SEASON. Unleash your potential with a selection of over 3000 invigorating exercises each month – a perfect harmony of the old and beloved, alongside the fresh and unseen. Elevate your fitness journey at Citronzale, where every session is a step towards a healthier, happier you! 🍋 #CitronzaleFitness #GroupTrainingAdventures"</p>
                 <button>BUY MEMBERSHIP</button>
                 <button>SCHEDULE</button>
-            </div>
-            <div class="video-container">
-                <video width="500" height="500" controls autoplay>
-                    <source src="grouptrainings.mp4" type="video/mp4">
-                </video>
             </div>
         </div>
         <div class="choose-text">
@@ -211,5 +205,38 @@
     .pilates img{
         width: 300px;
     }
+    @media (max-width: 768px) {
+  .introduction-box-top {
+    flex-direction: column;
+  }
+  
+  .video-container video {
+    max-width: 100%;
+  }
+
+  .content-container {
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+  }
+  
+  label {
+    font-size: 1rem;
+  }
+}
     
     </style>
