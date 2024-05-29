@@ -69,9 +69,6 @@
       <div class="button-container">
         <router-link to="/checkout-details"><button id="buyflex"> BUY NOW </button></router-link>
       </div>
-      <div class="trial">
-          <FreeTrial />
-      </div>
       <div class="footer">
         <Footer />
       </div>
@@ -80,14 +77,12 @@
 
 <script>
 import NavBar from '../components/NavBar.vue';
-import FreeTrial from '../components/FreeTrial.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
   components:{
     NavBar,
-    FreeTrial,
-    Footer
+    Footer,
   },
   data() {
     return {
@@ -217,10 +212,6 @@ body {
   background-color: var(--PastelGreen);
 }
 
-.trial {
-  margin-top:   2rem;
-  left: -1%;
-}
 
 .footer {
   background-color: var(--TeaGreen);
@@ -229,6 +220,8 @@ body {
   position: relative;
   bottom:   0;
   width:   100%;
+  position: relative;
+  top: 12rem;
 }
 
 @media (max-width:   768px) {
