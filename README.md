@@ -28,6 +28,9 @@ For front-end:
 For back-end:
   - Configure the .env file to meet your needs to run this application (create it first). Can be found in CitronZaleGYM/backend/.env,
   - cd CitronZaleGYM/backend,
+  - cp .env.example .env
+  - php artisan key:generate
+  - php artisan config:cache
   - composer install,
   - run your database,
   - php artisan migrate,
