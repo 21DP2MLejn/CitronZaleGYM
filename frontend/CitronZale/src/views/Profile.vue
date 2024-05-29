@@ -8,10 +8,6 @@
         <div class="greetings">
           <h1>Hello, {{ user.name }} {{ user.lastname }}</h1>
         </div>
-        <div class="profile-picture">
-          <img :src="user.profile_image ? `/storage/${user.profile_image}` : defaultImage" alt="Profile Picture">
-          <input type="file" @change="onImageChange">
-        </div>
         <div class="user-info">
           <div class="user-details">
             <h2>Personal Information</h2>
@@ -72,7 +68,6 @@ export default {
       },
       isDeleteModalVisible: false,
       isEditing: false,
-      defaultImage: '../assets/Images/default_profile_picture.jpg',
     };
   },
   async created() {
@@ -138,25 +133,6 @@ export default {
         alert('Problem with logging out');
       }
     },
-    onImageChange(e) {
-      const file = e.target.files[0];
-      const formData = new FormData();
-      formData.append('profile_image', file);
-
-      axios.post('http://127.0.0.1:8000/api/profile/image', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-        }
-      })
-      .then(response => {
-        console.log(response.data.message);
-        this.user.profile_image = response.data.data.profile_image;
-      })
-      .catch(error => {
-        console.error('Error uploading image:', error);
-      });
-    },
   },
 }
 </script>
@@ -167,11 +143,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
 }
 
 .main-container {
@@ -188,28 +159,16 @@ body {
 }
 
 #container {
-  background-color: var(--secondary-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--PastelGreen);
   padding: 20px;
   max-width: 800px;
   width: 100%;
   text-align: center;
 }
 
-.profile-picture {
-  width: 120px;
-  height: 120px;
-  background-size: cover;
-  border-radius: 50%;
-  border: 4px solid var(--primary-color);
-  margin: 0 auto 20px auto;
-}
-
 .greetings h1 {
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: var(--primary-color);
 }
 
 .user-info {
@@ -227,7 +186,6 @@ body {
 .user-details h2, .user-guardian h2 {
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: var(--primary-color);
 }
 
 input {
@@ -235,14 +193,12 @@ input {
   padding: 12px;
   margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: var(--border-radius);
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+  box-shadow: 0 0 8px var(--PastelGreen);
   outline: none;
 }
 
@@ -268,19 +224,19 @@ button:hover {
   margin-top: 20px;
 }
 
-button.edit-profile {
-  background-color: var(--primary-color);
+button {
+  width:   100%;
+  padding:   10px;
+  background-color: var(--TeaGreen);
+  color: white;
+  border: none;
+  border-radius:   5px;
+  cursor: pointer;
+  transition: background-color   0.3s ease;
 }
 
-button.delete-account {
-  background-color: #f44336;
-}
-
-
-button.edit-profile:hover,
-button.delete-account:hover,
-button.logout-button:hover {
-  filter: brightness(0.9);
+button:hover {
+  background-color: var(--ShinyShamrock);
 }
 
 .modal-content {
