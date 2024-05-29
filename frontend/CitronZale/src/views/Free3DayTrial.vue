@@ -68,7 +68,7 @@
     methods: {
       async sendTrialEmail() {
         try {
-          const response = await fetch('/api/send-trial-email', {
+          const response = axios.await('/api/send-trial-email', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
