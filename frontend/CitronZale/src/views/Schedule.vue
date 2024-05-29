@@ -22,109 +22,110 @@
                 <p>Registration to group trainings is mandatory before attending one, here are rules that should be followed.</p>
                 <li>You can register to a group training through any device, that CitronZale is available</li>
                 <li>You can't have more than 3 appointment for training sessions at once</li>
-                <li>If you do not attend scheduled trainings more than 2 times a week, then your account will be temporarily prohibeted from scheduling a new group training session </li>
-                <li>A group training session will only take place if there is atleast 5 registered members attending it</li>
-                <li>If are not attending a class make sure you unsubscibe from it.</li>
+                <li>If you do not attend scheduled trainings more than 2 times a week, then your account will be temporarily prohibited from scheduling a new group training session </li>
+                <li>A group training session will only take place if there are at least 5 registered members attending it</li>
+                <li>If you are not attending a class make sure you unsubscribe from it.</li>
             </ul>
         </div>
     </div>
     
     <div class="table-container">
         <table>
-       <tr>
-           <th></th>
-           <th>Monday</th>
-           <th>Tuesday</th>
-           <th>Wednesday</th>
-           <th>Thursday</th>
-           <th>Friday</th>
-       </tr>
-       <tr>
-           <td>12:00</td>
-           <td></td>
-           <td><button @click="reserveSession('INDOOR CYCLING')">Reserve</button> INDOOR CYCLING</td>
-           <td></td>
-           <td><button @click="reserveSession('STRETCH & BALANCE')">Reserve</button> STRETCH & BALANCE</td>
-           <td><button @click="reserveSession('CIRCUIT TRAINING')">Reserve</button> CIRCUIT TRAINING</td>
-       </tr>
-       <tr>
-           <td>13:00</td>
-           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
-           <td></td>
-           <td><button @click="reserveSession('ZUMBA')">Reserve</button> ZUMBA</td>
-           <td></td>
-           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
-       </tr>
-       <tr>
-           <td>14:00</td>
-           <td></td>
-           <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
-           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
-           <td></td>
-           <td></td>
-       </tr>
-       <tr>
-           <td>15:00</td>
-           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
-           <td></td>
-           <td></td>
-           <td><button @click="reserveSession('KICKBOXING')">Reserve</button> KICKBOXING</td>
-           <td></td>
-       </tr>
-       <tr>
-           <td>16:00</td>
-           <td></td>
-           <td><button @click="reserveSession('INDOOR CYCLING')">Reserve</button> INDOOR CYCLING</td>
-           <td></td>
-           <td><button @click="reserveSession('STRETCH & BALANCE')">Reserve</button> STRETCH & BALANCE</td>
-           <td><button @click="reserveSession('CIRCUIT TRAINING')">Reserve</button> CIRCUIT TRAINING</td>
-       </tr>
-       <tr>
-           <td>17:00</td>
-           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button>POWER LIFTING</td>
-           <td></td>
-           <td><button @click="reserveSession('ZUMBA')">Reserve</button> ZUMBA</td>
-           <td></td>
-           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
-       </tr>
-       <tr>
-           <td>18:00</td>
-           <td></td>
-           <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
-           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
-           <td></td>
-           <td></td>
-       </tr>
-       <tr>
-           <td>19:00</td>
-           <td><button @click="reserveSession('CORE TRAINING')">Reserve</button> CORE TRAINING</td>
-           <td><button @click="reserveSession('FULL BODY CIRCLES')">Reserve</button> FULL BODY CIRCLES</td>
-           <td></td>
-           <td></td>
-           <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
-       </tr>
-       <tr>
-           <td>20:00</td>
-           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
-           <td></td>
-           <td><button @click="reserveSession('KICKBOXING')">Reserve</button> KICKBOXING</td>
-           <td></td>
-           <td></td>
-       </tr>
-   </table>
-    <div v-if="selectedSession" class="selected-session">
-        <p>You have selected: {{ selectedSession }}</p>
-    </div>
-   <div class="button-container">
-        <button class="reserve" @click="makeReservation">Reserve</button>
-        <button class="cancelreservation" @click="cancelReservation">Cancel Reservation</button>
-   </div>
+            <tr>
+                <th></th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+            </tr>
+            <tr>
+                <td>12:00</td>
+                <td></td>
+                <td><button @click="reserveSession('INDOOR CYCLING')">Reserve</button> INDOOR CYCLING</td>
+                <td></td>
+                <td><button @click="reserveSession('STRETCH & BALANCE')">Reserve</button> STRETCH & BALANCE</td>
+                <td><button @click="reserveSession('CIRCUIT TRAINING')">Reserve</button> CIRCUIT TRAINING</td>
+            </tr>
+            <tr>
+                <td>13:00</td>
+                <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
+                <td></td>
+                <td><button @click="reserveSession('ZUMBA')">Reserve</button> ZUMBA</td>
+                <td></td>
+                <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
+            </tr>
+            <tr>
+                <td>14:00</td>
+                <td></td>
+                <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
+                <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>15:00</td>
+                <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
+                <td></td>
+                <td></td>
+                <td><button @click="reserveSession('KICKBOXING')">Reserve</button> KICKBOXING</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>16:00</td>
+                <td></td>
+                <td><button @click="reserveSession('INDOOR CYCLING')">Reserve</button> INDOOR CYCLING</td>
+                <td></td>
+                <td><button @click="reserveSession('STRETCH & BALANCE')">Reserve</button> STRETCH & BALANCE</td>
+                <td><button @click="reserveSession('CIRCUIT TRAINING')">Reserve</button> CIRCUIT TRAINING</td>
+            </tr>
+            <tr>
+                <td>17:00</td>
+                <td><button @click="reserveSession('POWER LIFTING')">Reserve</button>POWER LIFTING</td>
+                <td></td>
+                <td><button @click="reserveSession('ZUMBA')">Reserve</button> ZUMBA</td>
+                <td></td>
+                <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
+            </tr>
+            <tr>
+                <td>18:00</td>
+                <td></td>
+                <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
+                <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>19:00</td>
+                <td><button @click="reserveSession('CORE TRAINING')">Reserve</button> CORE TRAINING</td>
+                <td><button @click="reserveSession('FULL BODY CIRCLES')">Reserve</button> FULL BODY CIRCLES</td>
+                <td></td>
+                <td></td>
+                <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
+            </tr>
+            <tr>
+                <td>20:00</td>
+                <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
+                <td></td>
+                <td><button @click="reserveSession('KICKBOXING')">Reserve</button> KICKBOXING</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div v-if="selectedSession" class="selected-session">
+            <p>You have selected: {{ selectedSession }}</p>
+        </div>
+        <div class="button-container">
+            <button class="reserve" @click="makeReservation">Reserve</button>
+            <button class="cancelreservation" @click="cancelReservation">Cancel Reservation</button>
+        </div>
     </div>
     <div class="footer">
-      <Footer />
+        <Footer />
     </div>
 </main>
 </template>
+
 
 <script>
 import NavBar from '../components/NavBar.vue';

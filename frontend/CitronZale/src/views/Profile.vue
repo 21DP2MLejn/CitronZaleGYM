@@ -8,20 +8,25 @@
         <div class="greetings">
           <h1>Hello, {{ user.name }} {{ user.lastname }}</h1>
         </div>
-        <div class="profile-picture"></div>
-        <div class="user-details">
-          <input type="text" class="name" v-model="user.name" :readonly="!isEditing" placeholder="Name">
-          <input type="text" class="lastname" v-model="user.lastname" :readonly="!isEditing" placeholder="Last Name">
-          <input type="date" class="birthdate" v-model="user.birthdate" :readonly="!isEditing" placeholder="Birthdate">
+        <div class="profile-picture">
+          <img :src="user.profile_image ? `/storage/${user.profile_image}` : defaultImage" alt="Profile Picture">
+          <input type="file" @change="onImageChange">
         </div>
-        <div class="user-contact">
-          <input type="text" class="email" v-model="user.email" readonly placeholder="E-mail">
-          <input type="text" class="phone-number" v-model="user.phonenumber" :readonly="!isEditing" placeholder="Phone Number">
-        </div>
-        <div class="user-guardian">
-          <input type="text" class="guardian-name" v-model="user.guardian_name" :readonly="!isEditing" placeholder="Guardian Name">
-          <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" :readonly="!isEditing" placeholder="Guardian Last Name">
-          <input type="text" class="guardian-email" v-model="user.guardian_email" :readonly="!isEditing" placeholder="Guardian E-mail">
+        <div class="user-info">
+          <div class="user-details">
+            <h2>Personal Information</h2>
+            <input type="text" class="name" v-model="user.name" :readonly="!isEditing" placeholder="Name">
+            <input type="text" class="lastname" v-model="user.lastname" :readonly="!isEditing" placeholder="Last Name">
+            <input type="date" class="birthdate" v-model="user.birthdate" :readonly="!isEditing" placeholder="Birthdate">
+            <input type="text" class="email" v-model="user.email" readonly placeholder="E-mail">
+            <input type="text" class="phone-number" v-model="user.phonenumber" :readonly="!isEditing" placeholder="Phone Number">
+          </div>
+          <div class="user-guardian">
+            <h2>Guardian Information</h2>
+            <input type="text" class="guardian-name" v-model="user.guardian_name" :readonly="!isEditing" placeholder="Guardian Name">
+            <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" :readonly="!isEditing" placeholder="Guardian Last Name">
+            <input type="text" class="guardian-email" v-model="user.guardian_email" :readonly="!isEditing" placeholder="Guardian E-mail">
+          </div>
         </div>
         <div class="button-container">
           <button class="edit-profile" @click="toggleEditProfile">{{ isEditing ? 'Save changes' : 'Edit profile' }}</button>
@@ -41,7 +46,6 @@
     </Modal>
   </main>
 </template>
-
 
 <script>
 import NavBar from '../components/NavBar.vue';
@@ -64,9 +68,11 @@ export default {
         guardian_name: '',
         guardian_lastname: '',
         guardian_email: '',
+        profile_image: '',
       },
       isDeleteModalVisible: false,
       isEditing: false,
+      defaultImage: '../assets/Images/default_profile_picture.jpg',
     };
   },
   async created() {
@@ -132,128 +138,204 @@ export default {
         alert('Problem with logging out');
       }
     },
-  }
+    onImageChange(e) {
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append('profile_image', file);
+
+      axios.post('http://127.0.0.1:8000/api/profile/image', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+        }
+      })
+      .then(response => {
+        console.log(response.data.message);
+        this.user.profile_image = response.data.data.profile_image;
+      })
+      .catch(error => {
+        console.error('Error uploading image:', error);
+      });
+    },
+  },
 }
 </script>
 
-
-
 <style scoped>
-.main-container{
-  width: 100%;
-  height: 100%;
-  background-color: var(--TeaGreen);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.input-container {
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.main-container {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.navbar {
+  width: 100%;
+}
+
+#container {
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  background-size: cover;
+  border-radius: 50%;
+  border: 4px solid var(--primary-color);
+  margin: 0 auto 20px auto;
+}
+
+.greetings h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.user-details, .user-guardian {
+  flex: 1;
+  min-width: 300px;
+  padding: 10px;
+}
+
+.user-details h2, .user-guardian h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
 }
 
 input {
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
-  border-color: var(--ShinyShamrock);
+  border-color: var(--primary-color);
   box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
-  outline: none; 
-}
-.navbar{
-    position: relative;
-    margin: 1;
-    padding: 1;
-    left: -0.5rem;
-    top: -0.5rem;
-}
-
-#container{
-  position: absolute;
-  top: 45%;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-}
-
-.profile-picture{
-   width: 20rem;
-   height: 20rem;
-   background-image: url(../assets/Images/gym_picture5.jpg);
-   background-repeat: no-repeat;
-   background-size: cover;
-   border-radius: 10rem;
-   overflow: hidden;
-   display: flex;
-   justify-content: center;
-   align-content: center;
-   border: 0.18rem solid var(--PastelGreen);
-   position: relative;
-   left: -10rem;
+  outline: none;
 }
 
 button {
-  width: 8rem;
+  width: calc(33% - 10px);
   padding: 10px;
-  background-color: var(--TeaGreen);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 5px;
+  margin: 5px;
 }
 
 button:hover {
-  background-color: var(--ShinyShamrock);
+  background-color: #45a049;
 }
 
-.user-details{
+.button-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  left: 16rem;
-  top: -10rem;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
-.user-contact{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  left: 16rem;
-  top: -9rem;
+button.edit-profile {
+  background-color: var(--primary-color);
 }
 
-.user-guardian{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: relative;
-  left: 16rem;
-  top: -8rem;
+button.delete-account {
+  background-color: #f44336;
 }
 
-h1{
-  font-size: 3rem;
+
+button.edit-profile:hover,
+button.delete-account:hover,
+button.logout-button:hover {
+  filter: brightness(0.9);
 }
 
-.greetings{
-  position: relative;
-  left: 16rem;
-  top: 5rem;
+.modal-content {
+  border-radius: var(--border-radius);
 }
 
-.button-container{
-  width: 100%;
-  display: flex;
-  align-content: center;
-  justify-content: center;
+.modal-content button {
+  border-radius: var(--border-radius);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .main-container{
+    position: relative;
+    top: 5rem;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+  }
+
+  .greetings h1 {
+    font-size: 1.5rem;
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+  }
+
+  .greetings h1 {
+    font-size: 1.2rem;
+  }
+
+  .user-details, .user-guardian {
+    min-width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
 </style>
+
