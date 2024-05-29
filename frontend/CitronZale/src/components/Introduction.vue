@@ -2,11 +2,11 @@
   <div class="container">
     <div class="content-container">
       <div class="section introduction">
-        <h2>Introduction</h2>
-        <p>Welcome to Citronzale Gym, where fitness takes center stage. At Citronzale, we're not just a gym; we're a community committed to your well-being. Our state-of-the-art facilities offer a diverse range of equipment and classes, accommodating fitness enthusiasts of all levels. From personalized training sessions to group workouts and the latest in cutting-edge technology, we're here to help you achieve your fitness goals, one step at a time. Our team of experienced trainers and nutrition experts are dedicated to guiding you on your journey to a healthier, stronger you. Join us at Citronzale Gym and embark on a path to a fitter, more vibrant you today.</p>
-      </div>
-      <div class="section introduction-image">
-          <div class="image"></div>
+        <div class="introduction-text">
+          <h2>Introduction</h2>
+          <p>Welcome to Citronzale Gym, where fitness takes center stage. At Citronzale, we're not just a gym; we're a community committed to your well-being. Our state-of-the-art facilities offer a diverse range of equipment and classes, accommodating fitness enthusiasts of all levels. From personalized training sessions to group workouts and the latest in cutting-edge technology, we're here to help you achieve your fitness goals, one step at a time. Our team of experienced trainers and nutrition experts are dedicated to guiding you on your journey to a healthier, stronger you. Join us at Citronzale Gym and embark on a path to a fitter, more vibrant you today.</p>
+        </div>
+        <div class="introduction-image"></div>
       </div>
       <div class="section featured-classes">
         <h2>Featured Classes</h2>
@@ -23,74 +23,93 @@ export default {
 </script>
 
 <style scoped>
+:root {
+  --primary-color: #00a676; /* Shiny Shamrock */
+  --secondary-color: #d3f9d8; /* Tea Green */
+  --text-color: #333;
+  --bg-color: #fff;
+}
+
 .container {
-  width:  100%;
-  min-height:  100vh;
-  position: relative;
-  background-color: var(--TeaGreen);
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  padding:  1rem;
+  padding: 2rem 1rem;
 }
 
 .content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:  1rem;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .section {
-  width:  100%;
-  max-width:  600px;
-  background-color: var(--ShinyShamrock);
-  border-radius:  2rem;
-  padding:  1.5rem;
-  z-index:  10000000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--secondary-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0px 10px var(--PastelGreen);
   text-align: center;
-  box-shadow:  0  0  10px rgba(0,  0,  0,  0.1);
-  min-height: 20rem;
-  height: auto;
+}
+
+.introduction {
+  flex-direction: column;
+}
+
+.introduction-text {
+  order: 2;
 }
 
 .introduction-image {
-  width:  100%;
-  height:  500px;
+  order: 1;
+  width: 100%;
+  height: 300px;
   background-image: url(../assets/Images/gym_picture3.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  border:  1px solid var(--PastelGreen);
-  margin-top:  2rem;
-  position: relative;
+  background-position: center;
+  border-radius: 1rem;
 }
 
-@media (min-width:  721px) {
-  .container {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding:  2rem;
-  }
+.featured-classes {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
 
-  .content-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    width:  100%;
-  }
-
+@media (min-width: 768px) {
   .section {
-    flex:  1;
-    max-width:  45%;
-    height: auto;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .introduction {
+    flex-direction: row;
+  }
+
+  .introduction-text, .introduction-image {
+    flex: 1;
+    order: unset;
   }
 
   .introduction-image {
-    width:  55%;
-    height: 300px;
-    margin-top:  0;
+    height: auto;
+    max-width: 50%;
+  }
+
+  .featured-classes {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 </style>
+

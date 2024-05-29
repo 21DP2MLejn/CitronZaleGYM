@@ -80,7 +80,7 @@ body{
 
 .freetrial{
   position:relative;
-  top: -15rem
+  top: -6rem;
 }
 
 .footer{

@@ -134,6 +134,11 @@ const router = createRouter({
       name: 'zumba',
       component: () => import('../views/Group-trainings/Zumba.vue')
     },
+    {
+      path: '/freetrial',
+      name: 'freetrial',
+      component: () => import ('../views/Free3DayTrial.vue')
+    },
   ]
 })
 

@@ -30,55 +30,48 @@
   </template>
   
   <script>
-  
-  import NavBar from '../components/NavBar.vue';
-  import axios from 'axios';
-  
-  export default {
-    components: {
-      NavBar,
-    },
-    data() {
-      return {
-        user: {
-          name: '',
-          lastname: '',
-          email: '',
-          phonenumber: '',
-          birthdate: '',
-          guardian_name: '',
-          guardian_lastname: '',
-          guardian_email: '',
-        },
-      };
-    },
-    async created() {
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/profile');
-        this.user = response.data.data;
-      } catch (error) {
-        console.error('Error fetching profile:', error);
-      }
-    },
+import NavBar from '../components/NavBar.vue';
+import axios from 'axios';
+
+export default {
+  components: {
+    NavBar,
+  },
+  data() {
+    return {
+      user: {
+        name: '',
+        lastname: '',
+        email: '',
+        phonenumber: '',
+        birthdate: '',
+        guardian_name: '',
+        guardian_lastname: '',
+        guardian_email: '',
+      },
+    };
+  },
+  async created() {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/profile');
+      this.user = response.data.data;
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+    }
+  },
+  methods: {
     async deleteAccount() {
       try {
-        // Retrieve the token from localStorage and log it to the console
-        const token = localStorage.getItem('token');
-        console.log(token); // Debugging statement to check the token value
-
-        const response = await axios.delete('http://127.0.0.1:8000/api/delete-account', {
-          headers: {
-            'Authorization': `Bearer ${token}` // Use the logged token here
-          }
-        });
+        const response = await axios.delete('http://127.0.0.1:8000/api/delete-account');
         console.log(response.data.message);
+        localStorage.removeItem('authToken');
         this.$router.push('/login');
-        // Optionally, redirect the user or show a confirmation message
       } catch (error) {
         console.error('There was an error!', error);
       }
     }
   }
+}
   </script>
 
 <style scoped>

@@ -120,12 +120,10 @@ class ApiController extends Controller
     //Logout API
     public function logout(){
         $user = Auth::user();
-    
-        auth()->user()->token()->revoke();
-    
+        $user->token()->revoke();
         return response()->json([
             "status" => true,
-            "message" => 'User logged out successfully ja es apsolu'
+            "message" => 'User logged out successfully'
         ]);
     }
 
