@@ -7,8 +7,8 @@
             <div class="content-container">
                 <h1>GROUP TRAININGS</h1>
                 <p>"Embrace the fusion of tradition and innovation at CitronZale! Discover a blend of time-honored classics and cutting-edge workouts in our exciting new GROUP TRAINING SEASON. Unleash your potential with a selection of over 3000 invigorating exercises each month – a perfect harmony of the old and beloved, alongside the fresh and unseen. Elevate your fitness journey at Citronzale, where every session is a step towards a healthier, happier you! 🍋 #CitronzaleFitness #GroupTrainingAdventures"</p>
-                <button>BUY MEMBERSHIP</button>
-                <button>SCHEDULE</button>
+                <router-link to="/prices"><button class="membership">BUY MEMBERSHIP </button></router-link>
+                <router-link to="/schedule"><button class="schedule">SCHEDULE</button></router-link>
             </div>
         </div>
         <div class="choose-text">
@@ -205,6 +205,31 @@
     .pilates img{
         width: 300px;
     }
+
+ button {
+  background-color: var(--ShinyShamrock);
+  color: #fff;
+  border: none;
+  padding:   0.5rem   1rem;
+  border-radius:   5px;
+  cursor: pointer;
+  transition: background-color   0.3s ease;
+  position: relative;
+}
+
+button:hover {
+  background-color: var(--PastelGreen);
+}
+
+button.active {
+  background-color: var(--ShinyShamrock);
+  color: black;
+}
+
+.schedule{
+    left: 1rem;
+}
+
     @media (max-width: 768px) {
   .introduction-box-top {
     flex-direction: column;
