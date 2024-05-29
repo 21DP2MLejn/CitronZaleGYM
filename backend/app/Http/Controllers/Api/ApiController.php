@@ -163,4 +163,38 @@ class ApiController extends Controller
 
         return response()->json(['message' => 'User not found.'], 404);
     }
+
+    //Edit profile
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'birthdate' => 'required|date_format:Y-m-d',
+            'phonenumber' => 'required|string|max:11',
+            'guardian_name' => 'nullable|string',
+            'guardian_lastname' => 'nullable|string',
+            'guardian_email' => 'nullable|email',
+        ]);
+
+        // Update the user details
+        $user->update([
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'birthdate' => Carbon::parse($request->birthdate),
+            'phonenumber' => $request->phonenumber,
+            'guardian_name' => $request->guardian_name,
+            'guardian_lastname' => $request->guardian_lastname,
+            'guardian_email' => $request->guardian_email,
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Profile updated successfully',
+            'data' => $user
+        ]);
+    }
 }

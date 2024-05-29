@@ -10,32 +10,47 @@
         </div>
         <div class="profile-picture"></div>
         <div class="user-details">
-          <input type="text" class="name" v-model="user.name" placeholder="Name" readonly>
-          <input type="text" class="lastname" v-model="user.lastname" placeholder="Last Name" readonly>
-          <input type="date" class="birthdate" v-model="user.birthdate" placeholder="Birthdate">
+          <input type="text" class="name" v-model="user.name" :readonly="!isEditing" placeholder="Name">
+          <input type="text" class="lastname" v-model="user.lastname" :readonly="!isEditing" placeholder="Last Name">
+          <input type="date" class="birthdate" v-model="user.birthdate" :readonly="!isEditing" placeholder="Birthdate">
         </div>
         <div class="user-contact">
-          <input type="text" class="email" v-model="user.email" placeholder="E-mail" readonly>
-          <input type="text" class="phone-number" v-model="user.phonenumber" placeholder="Phone Number" readonly>
+          <input type="text" class="email" v-model="user.email" readonly placeholder="E-mail">
+          <input type="text" class="phone-number" v-model="user.phonenumber" :readonly="!isEditing" placeholder="Phone Number">
         </div>
         <div class="user-guardian">
-          <input type="text" class="guardian-name" v-model="user.guardian_name" placeholder="Guardian Name" readonly>
-          <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" placeholder="Guardian Last Name" readonly>
-          <input type="text" class="guardian-email" v-model="user.guardian_email" placeholder="Guardian E-mail" readonly>
-          <button class="delete-account" @click="deleteAccount">Delete account</button>
+          <input type="text" class="guardian-name" v-model="user.guardian_name" :readonly="!isEditing" placeholder="Guardian Name">
+          <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" :readonly="!isEditing" placeholder="Guardian Last Name">
+          <input type="text" class="guardian-email" v-model="user.guardian_email" :readonly="!isEditing" placeholder="Guardian E-mail">
+        </div>
+        <div class="button-container">
+          <button class="edit-profile" @click="toggleEditProfile">{{ isEditing ? 'Save changes' : 'Edit profile' }}</button>
+          <button class="delete-account" @click="showDeleteModal">Delete account</button>
         </div>
       </div>
     </div>
+    <Modal 
+      :visible="isDeleteModalVisible" 
+      title="Delete Account" 
+      confirmButtonText="Delete" 
+      @close="isDeleteModalVisible = false" 
+      @confirm="deleteAccount"
+    >
+      <p>Are you sure you want to delete your account? This action cannot be undone.</p>
+    </Modal>
   </main>
-  </template>
-  
-  <script>
+</template>
+
+
+<script>
 import NavBar from '../components/NavBar.vue';
+import Modal from '../components/Modal.vue';
 import axios from 'axios';
 
 export default {
   components: {
     NavBar,
+    Modal,
   },
   data() {
     return {
@@ -49,17 +64,25 @@ export default {
         guardian_lastname: '',
         guardian_email: '',
       },
+      isDeleteModalVisible: false,
+      isEditing: false, // Track editing state
     };
   },
   async created() {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/profile');
-      this.user = response.data.data;
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-    }
+    await this.fetchUserProfile();
   },
   methods: {
+    async fetchUserProfile() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/profile');
+        this.user = response.data.data;
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    },
+    showDeleteModal() {
+      this.isDeleteModalVisible = true;
+    },
     async deleteAccount() {
       try {
         const response = await axios.delete('http://127.0.0.1:8000/api/delete-account');
@@ -68,20 +91,46 @@ export default {
         this.$router.push('/login');
       } catch (error) {
         console.error('There was an error!', error);
+      } finally {
+        this.isDeleteModalVisible = false;
+      }
+    },
+    toggleEditProfile() {
+      if (this.isEditing) {
+        this.saveProfile();
+      } else {
+        this.isEditing = true;
+      }
+    },
+    async saveProfile() {
+      try {
+        const token = localStorage.getItem('authToken');
+        const response = await axios.put('http://127.0.0.1:8000/api/profile', this.user, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        console.log(response.data.message);
+        alert('Profile updated successfully');
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        alert('Error updating profile');
+      } finally {
+        this.isEditing = false;
       }
     }
   }
 }
-  </script>
+</script>
+
+
 
 <style scoped>
-
 .main-container{
   width: 100%;
   height: 100%;
   background-color: var(--TeaGreen);
 }
-
 
 .input-container {
   display: flex;
@@ -119,7 +168,6 @@ input:focus {
   padding: 10px;
 }
 
-
 .profile-picture{
    width: 20rem;
    height: 20rem;
@@ -137,45 +185,20 @@ input:focus {
 }
 
 button {
-  --b: 3px;   
-  --s: .15em;
-  
-  padding: calc(.05em + var(--s)) calc(.3em + var(--s));
-  color: var(--black);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--black) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .2em;
+  width: 8rem;
+  padding: 10px;
+  background-color: var(--TeaGreen);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 5px;
 }
 
-button:hover,
-button:focus-visible{
-  --_p: 0px;
-  outline-color: red; /* Change outline color on hover */
-  outline-offset: .05em;
-  background: red; /* Change background color on hover */
-  color: white; /* Change text color on hover */
+button:hover {
+  background-color: var(--ShinyShamrock);
 }
-
-button:active {
-  background: var(--black);
-  color: var(--black);
-}
-
-button{
-    font-size: 1rem;
-    cursor: pointer;
-    border: none;
-    margin: .1em;
-    transition: 0.5s;
-    position: relative;
-    margin: 5px;
-}
-
-
 
 .user-details{
   display: flex;
@@ -214,4 +237,10 @@ h1{
   top: 5rem;
 }
 
+.button-container{
+  width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 </style>
