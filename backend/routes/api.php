@@ -37,4 +37,5 @@ Route::group([
     Route::get('/profile', [ApiController::class, 'profile']);
     Route::post('/logout', [ApiController::class, 'logout']);
     Route::post('/reserve', [ReservationController::class, 'store']);
+    Route::delete('/delete-account', [ApiController::class, 'deleteAccount']);
 });

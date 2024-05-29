@@ -92,7 +92,7 @@ class ApiController extends Controller
         ])){
             $user = Auth::user();
             $token = $user->createToken('myToken')->accessToken;
-
+        
             return response()->json([
                 'status' => true,
                 'message' => 'Login successful es apsolu',
@@ -147,6 +147,22 @@ class ApiController extends Controller
             ]);
         }
 
+    }
+    //Delete account
+    public function deleteAccount(Request $request)
+    {
+        $user = Auth::user(); // Get the currently authenticated user
 
+        if ($user) {
+            // Attempt to delete the user
+            try {
+                $user->delete();
+                return response()->json(['message' => 'Account successfully deleted.'], 200);
+            } catch (\Exception $e) {
+                return response()->json(['message' => 'Error deleting account: ' . $e->getMessage()], 500);
+            }
+        }
+
+        return response()->json(['message' => 'User not found.'], 404);
     }
 }

@@ -1,70 +1,85 @@
 <template>
-<main>
-  <div class="navbar">
+  <main>
+    <div class="navbar">
       <NavBar />
-  </div>
+    </div>
     <div class="main-container">
       <div id="container">
         <div class="greetings">
-          <h1>Hello, {{user.name}}</h1>  
+          <h1>Hello, {{ user.name }}</h1>
         </div>
         <div class="profile-picture"></div>
         <div class="user-details">
-            <input type="text" class="name" v-model="user.name" placeholder="Name" readonly>
-            <input type="text" class="lastname" v-model="user.lastname" placeholder="Last Name" readonly>
-            <input type="date" class="birthdate" v-model="user.birthdate" placeholder="Birthdate">
+          <input type="text" class="name" v-model="user.name" placeholder="Name" readonly>
+          <input type="text" class="lastname" v-model="user.lastname" placeholder="Last Name" readonly>
+          <input type="date" class="birthdate" v-model="user.birthdate" placeholder="Birthdate">
         </div>
         <div class="user-contact">
-            <input type="text" class="email" v-model="user.email" placeholder="E-mail" readonly>
-            <input type="text" class="phone-number" v-model="user.phonenumber" placeholder="Phone Number" readonly>
+          <input type="text" class="email" v-model="user.email" placeholder="E-mail" readonly>
+          <input type="text" class="phone-number" v-model="user.phonenumber" placeholder="Phone Number" readonly>
         </div>
         <div class="user-guardian">
-            <input type="text" class="guardian-name" v-model="user.guardian_name" placeholder="Guardian Name" readonly>
-            <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" placeholder="Guardian Last Name" readonly>
-            <input type="text" class="guardian-email" v-model="user.guardian_email" placeholder="Guardian E-mail" readonly>
-            <input type="text" class="guardian-country" placeholder="Country" v-show="country">
-            <button id="choosecountry" @click="ShowCountry">Country</button>
+          <input type="text" class="guardian-name" v-model="user.guardian_name" placeholder="Guardian Name" readonly>
+          <input type="text" class="guardian-lastname" v-model="user.guardian_lastname" placeholder="Guardian Last Name" readonly>
+          <input type="text" class="guardian-email" v-model="user.guardian_email" placeholder="Guardian E-mail" readonly>
+          <button class="delete-account" @click="deleteAccount">Delete account</button>
         </div>
+      </div>
     </div>
-</div>
-</main>
-</template>
+  </main>
+  </template>
+  
+  <script>
+  
+  import NavBar from '../components/NavBar.vue';
+  import axios from 'axios';
+  
+  export default {
+    components: {
+      NavBar,
+    },
+    data() {
+      return {
+        user: {
+          name: '',
+          lastname: '',
+          email: '',
+          phonenumber: '',
+          birthdate: '',
+          guardian_name: '',
+          guardian_lastname: '',
+          guardian_email: '',
+        },
+      };
+    },
+    async created() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/profile');
+        this.user = response.data.data;
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    },
+    async deleteAccount() {
+      try {
+        // Retrieve the token from localStorage and log it to the console
+        const token = localStorage.getItem('token');
+        console.log(token); // Debugging statement to check the token value
 
-<script>
-
-import NavBar from '../components/NavBar.vue';
-import axios from 'axios';
-
-export default {
-  components: {
-    NavBar,
-  },
-  data() {
-    return {
-      user: {
-        name: '',
-        lastname: '',
-        email: '',
-        phonenumber:'',
-        birthdate:'',
-        guardian_name:'',
-        guardian_lastname:'',
-        guardian_email: '',
-      },
-    };
-  },
-  async created() {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/profile');
-      this.user = response.data.data;
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-      alert('problem with displaying data')
-      
+        const response = await axios.delete('http://127.0.0.1:8000/api/delete-account', {
+          headers: {
+            'Authorization': `Bearer ${token}` // Use the logged token here
+          }
+        });
+        console.log(response.data.message);
+        this.$router.push('/login');
+        // Optionally, redirect the user or show a confirmation message
+      } catch (error) {
+        console.error('There was an error!', error);
+      }
     }
   }
-};
-</script>
+  </script>
 
 <style scoped>
 
@@ -142,15 +157,19 @@ button {
   outline: var(--b) solid #0000;
   outline-offset: .2em;
 }
+
 button:hover,
 button:focus-visible{
   --_p: 0px;
-  outline-color: var(--black);
+  outline-color: red; /* Change outline color on hover */
   outline-offset: .05em;
+  background: red; /* Change background color on hover */
+  color: white; /* Change text color on hover */
 }
+
 button:active {
   background: var(--black);
-  color: var(--TeaGreen);
+  color: var(--black);
 }
 
 button{
@@ -162,6 +181,8 @@ button{
     position: relative;
     margin: 5px;
 }
+
+
 
 .user-details{
   display: flex;
