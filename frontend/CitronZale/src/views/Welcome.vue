@@ -10,6 +10,9 @@
     <div class="introduction">
       <Introduction />
     </div>
+    <div class="freetrial">
+      <FreeTrial />
+    </div>
     <div class="footer">
       <Footer />
     </div>
@@ -21,6 +24,7 @@
   import ImageSlider from '../components/ImageSlider.vue';
   import Reasons from '../components/Reasons.vue';
   import Introduction from '../components/Introduction.vue';
+  import FreeTrial from '../components/FreeTrial.vue';
   import Footer from '../components/Footer.vue';
   
   export default {
@@ -29,6 +33,7 @@
       ImageSlider,
       Reasons,
       Introduction,
+      FreeTrial,
       Footer,
     },
   };
@@ -73,8 +78,13 @@ body{
   width: 100vw;
 }
 
+.freetrial{
+  position:relative;
+  top: -15rem
+}
+
 .footer{
-  top: -2rem;
+  top: 1rem;
   position: relative;
 }
 
