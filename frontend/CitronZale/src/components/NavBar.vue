@@ -15,8 +15,6 @@
       <li><router-link to="/about-us">About Us</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li v-if="isLoggedin"><router-link to="/profile">Profile</router-link></li>
-      <li class="login" v-if="!isLoggedin"><router-link to="/login">Login</router-link></li>
     </ul> 
   </div>
 </template>
@@ -37,29 +35,39 @@ export default {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },
+    async logout() {
+      try {
+        localStorage.removeItem('authToken');
+        const response = await axios.post('http://127.0.0.1:8000/api/logout');
+        console.log(response.data.message);
+        this.$router.push('/login');
+        this.isLoggedin = false;
+      } catch (error) {
+        console.error('Error logging out:', error);
+        alert('Problem with logging out');
+      }
+    },
     async checkLoginStatus() {
-      const token = localStorage.getItem('authToken');
-      if (token) {
-        try {
-          const response = await axios.get('http://127.0.0.1:8000/api/check-login', {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          this.isLoggedin = response.data.isLoggedin;
-        } catch (error) {
-          console.error('Error checking login status:', error);
-          this.isLoggedin = false;
-        }
-      } else {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/check-login');
+        this.isLoggedin = response.data.isLoggedin;
+      } catch (error) {
+        console.error('Error checking login status:', error);
         this.isLoggedin = false;
       }
     }
   },
+  mounted() {
+    this.checkLoginStatus();
+  }
 };
 </script>
 <style scoped>
 
+.join-button, .logout-button{
+  position: relative;
+  left: 63rem;
+}
 .logo-image {
   width: 100%;
   height: auto;
@@ -108,12 +116,6 @@ a {
   top: 1.3rem;
 
 }
-
-.login{
-  position: inherit;
-  left: 85%;
-}
-
 
 .nav-list {
   width: 60vw;
@@ -203,4 +205,3 @@ li a.router-link-active {
   }
 }
 </style>
-

@@ -86,19 +86,18 @@ export default {
 }
 
 button {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-  color: var(--button-text);
-  background-color: var(--button-bg);
+  width: 10rem;
+  padding:   10px;
+  background-color: var(--TeaGreen);
+  color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius:   5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color   0.3s ease;
 }
 
-button:hover,
-button:focus {
-  background-color: var(--button-hover-bg);
+button:hover {
+  background-color: var(--ShinyShamrock);
 }
 
 @media (max-width: 768px) {

@@ -6,7 +6,7 @@
     <div class="main-container">
       <div id="container">
         <div class="greetings">
-          <h1>Hello, {{ user.name }}</h1>
+          <h1>Hello, {{ user.name }} {{ user.lastname }}</h1>
         </div>
         <div class="profile-picture"></div>
         <div class="user-details">

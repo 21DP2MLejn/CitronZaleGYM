@@ -3,7 +3,7 @@
     <div class="image-slider">
       <div class="slider-image-container">
         <div class="text-container">
-          <h1>START NOW!</h1>
+          <router-link to="/login"><h1>START NOW!</h1></router-link>
           <h2>The only bad workout is one you didn't do.</h2>
           <p>What are you waiting for? Join NOW and get your dream physique! We have the best deals for everyone!</p>
           <ul>

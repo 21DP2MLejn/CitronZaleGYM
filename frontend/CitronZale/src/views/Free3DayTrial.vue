@@ -1,7 +1,14 @@
 <template>
     <main>
         <div class="main-container">
-            Hello
+            <div class="header-container">
+                <title></title>
+            </div>
+            <div class="description-container">
+                <p></p>
+            </div>
+            <div></div>
+            <div></div>
         </div>
     </main>
 </template>
