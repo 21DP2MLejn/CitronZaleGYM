@@ -128,24 +128,19 @@ class ApiController extends Controller
     }
 
 // Check Login Status API
+// Check Login Status API
     public function checkLoginStatus(Request $request)
     {
         // Check if the user is authenticated using Passport
-        if ($request->user()) {
-            return response()->json([
-                'status' => true,
-                'message' => 'User is logged in',
-                'isLoggedin' => true
-            ]);
-        }else{
-            return response()->json([
-                'status' => false,
-                'message' => 'User is not logged in',
-                'isLoggedin' => false
-            ]);
-        }
+        $isLoggedin = $request->user() ? true : false;
 
+        return response()->json([
+            'status' => true,
+            'message' => $isLoggedin ? 'User is logged in' : 'User is not logged in',
+            'isLoggedin' => $isLoggedin
+        ]);
     }
+
     //Delete account
     public function deleteAccount(Request $request)
     {

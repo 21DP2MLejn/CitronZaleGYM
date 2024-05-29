@@ -26,6 +26,7 @@
         <div class="button-container">
           <button class="edit-profile" @click="toggleEditProfile">{{ isEditing ? 'Save changes' : 'Edit profile' }}</button>
           <button class="delete-account" @click="showDeleteModal">Delete account</button>
+          <button class="logout-button" @click="logout">Log Out</button>
         </div>
       </div>
     </div>
@@ -65,7 +66,7 @@ export default {
         guardian_email: '',
       },
       isDeleteModalVisible: false,
-      isEditing: false, // Track editing state
+      isEditing: false,
     };
   },
   async created() {
@@ -118,7 +119,19 @@ export default {
       } finally {
         this.isEditing = false;
       }
-    }
+    },
+    async logout() {
+      try {
+        localStorage.removeItem('authToken');
+        const response = await axios.post('http://127.0.0.1:8000/api/logout');
+        console.log(response.data.message);
+        this.$router.push('/login');
+        this.isLoggedin = false;
+      } catch (error) {
+        console.error('Error logging out:', error);
+        alert('Problem with logging out');
+      }
+    },
   }
 }
 </script>

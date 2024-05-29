@@ -9,85 +9,57 @@
       <span class="bar"></span>
     </button>
     <ul class="nav-list" :class="{ 'active': isNavOpen }">
-      <li><router-link to="/prices" >Prices</router-link></li>
+      <li><router-link to="/prices">Prices</router-link></li>
       <li><router-link to="/schedule">Schedule</router-link></li>
       <li><router-link to="/trainings">Trainings</router-link></li>
-      <li><router-link to="/about-us">AboutUs</router-link></li>
+      <li><router-link to="/about-us">About Us</router-link></li>
       <li><router-link to="/clubs">Clubs</router-link></li>
       <li><router-link to="/profile">Profile</router-link></li>
-      <li class="join-button" v-if="isLoggedin">
-        <router-link to="/login">Join</router-link>
-      </li>
-      <li class="logout-button" v-if="!isLoggedin">
-        <a href="#" @click.prevent="logout">Log Out</a>
-      </li>
+      <li v-if="isLoggedin"><router-link to="/profile">Profile</router-link></li>
+      <li class="login" v-if="!isLoggedin"><router-link to="/login">Login</router-link></li>
     </ul> 
   </div>
 </template>
+
 
 <script>
 import axios from 'axios';
 
 export default {
- name: 'NavBar',
- data() {
+  name: 'NavBar',
+  data() {
     return {
       isNavOpen: false,
       isLoggedin: false,
     };
- },
- methods: {
+  },
+  methods: {
     toggleNav() {
       this.isNavOpen = !this.isNavOpen;
     },
-    logout() {
-      localStorage.removeItem('authToken');
-      axios.post('http://127.0.0.1:8000/api/logout').then(response => {
-          console.log(response.data.message);
-          this.$router.push('/login');
-          this.forceUpdate();
-          this.isLoggedin = false;
-      }).catch(error => {
-          console.error('Error logging out:', error);
-          alert('Problem with logging out');
-      });
-    },
     async checkLoginStatus() {
       const token = localStorage.getItem('authToken');
-      const tokenExpiration = localStorage.getItem('authTokenExpiration');
-      if (!token || new Date().getTime() > tokenExpiration) {
+      if (token) {
+        try {
+          const response = await axios.get('http://127.0.0.1:8000/api/check-login', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          this.isLoggedin = response.data.isLoggedin;
+        } catch (error) {
+          console.error('Error checking login status:', error);
+          this.isLoggedin = false;
+        }
+      } else {
         this.isLoggedin = false;
-        return;
       }
-      try {
-        const response = await axios.get('http://127.0.0.1:8000/api/check-login', {
-          headers: {
-            'Authorization': 'Bearer ' + token
-          }
-        });
-        this.isLoggedin = response.data.isLoggedin; // Ensure this matches the API response structure
-      } catch (error) {
-        console.error('Error checking login status:', error);
-        this.isLoggedin = false;
-      }
-    },
-    forceUpdate() {
-      this.$forceUpdate(); 
     }
- },
- mounted() {
-    this.checkLoginStatus();
- }
+  },
 };
 </script>
-
-
 <style scoped>
 
-.join-button, .logout-button{
-  position: relative;
-  left: 63rem;
-}
 .logo-image {
   width: 100%;
   height: auto;
@@ -105,7 +77,7 @@ export default {
   height: 8vh;
   width: 100vw;
   margin: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   border-bottom: 2px solid var(--TeaGreen);
@@ -135,6 +107,11 @@ a {
   left: 110rem;
   top: 1.3rem;
 
+}
+
+.login{
+  position: inherit;
+  left: 85%;
 }
 
 

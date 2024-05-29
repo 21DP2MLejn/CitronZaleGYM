@@ -1,78 +1,78 @@
 <template>
-  <main>
-      <div>
-          <NavBar />
-      </div>
-      <div class="image-container">
-          <div class="title"> <h1>FEATURING THE BEST PRICES</h1></div>
-      </div>
-      <div class="select-period">
-          <button @click="selectedPeriod = 'all'" :class="{ active: selectedPeriod === 'all' }">All deals</button>
-          <button @click="selectedPeriod = 'longterm'" :class="{ active: selectedPeriod === 'longterm' }">Long-term</button>
-          <button @click="selectedPeriod = 'indefinite'" :class="{ active: selectedPeriod === 'indefinite' }">Indefinite period</button>
-      </div>
-      <div class="prices-container">
-          <div class="card regular" v-show="selectedPeriod === 'all' || selectedPeriod === 'longterm'">
-              <h2>Regular</h2>
-              <h3>Price:   14.99$</h3>
-              <p>Advantages</p>
-              <ul>
-                  <li>Unlimited visit   24/7</li>
-                  <li>Membership freeze</li>
-                  <li>Rewrite membership to another person</li>
-                  <li>Minimal period of contract:   12months</li>
-              </ul>
-          </div>
-          <div class="card flex" v-show="selectedPeriod === 'all' || selectedPeriod === 'longterm'">
-              <h2>Flex</h2>
-              <h3>Price:   19.99$</h3>
-              <p>Advantages</p>
-              <ul>
-                  <li>Unlimited visit   24/7</li>
-                  <li>Membership freeze</li>
-                  <li>Rewrite membership to another person</li>
-                  <li>Intro training</li>
-                  <li>Minimal period of contract:   12months</li>
-              </ul>
-          </div>
-          <div class="card super" v-show="selectedPeriod === 'all' || selectedPeriod === 'indefinite'">
-              <h2>Super</h2>
-              <h3>Price:   24.99$</h3>
-              <p>Advantages</p>
-              <ul>
-                  <li>Unlimited visit   24/7</li>
-                  <li>Membership freeze</li>
-                  <li>Rewrite membership to another person</li>
-                  <li>Intro training</li>
-                  <li>Group trainings</li>
-                  <li>Sauna</li>
-                  <li>Unlimited period of contract</li>
-              </ul>
-          </div>
-          <div class="card deluxe" v-show="selectedPeriod === 'all' || selectedPeriod === 'indefinite'">
-              <h2>Deluxe</h2>
-              <h3>Price:   29.99$</h3>
-              <p>Advantages</p>
-              <ul>
-                  <li>Unlimited visit   24/7</li>
-                  <li>Membership freeze</li>
-                  <li>Rewrite membership to another person</li>
-                  <li>Intro training</li>
-                  <li>Group trainings</li>
-                  <li>Sauna</li>
-                  <li>Pool access</li>
-                  <li>Water refill every   20 minutes</li>
-                  <li>Unlimited period of contract</li>
-              </ul>
-          </div>
-      </div>
-      <div class="button-container">
-        <router-link to="/checkout-details"><button id="buyflex"> BUY NOW </button></router-link>
-      </div>
-      <div class="footer">
+  <div>
+    <div>
+        <NavBar />
+    </div>
+    <div class="image-container">
+        <div class="title"> <h1>FEATURING THE BEST PRICES</h1></div>
+    </div>
+    <div class="select-period">
+        <button @click="selectedPeriod = 'all'" :class="{ active: selectedPeriod === 'all' }">All deals</button>
+        <button @click="selectedPeriod = 'longterm'" :class="{ active: selectedPeriod === 'longterm' }">Long-term</button>
+        <button @click="selectedPeriod = 'indefinite'" :class="{ active: selectedPeriod === 'indefinite' }">Indefinite period</button>
+    </div>
+    <div class="prices-container">
+        <div class="card regular" v-show="selectedPeriod === 'all' || selectedPeriod === 'longterm'">
+            <h2>Regular</h2>
+            <h3>Price:   14.99$</h3>
+            <p>Advantages</p>
+            <ul>
+                <li>Unlimited visit   24/7</li>
+                <li>Membership freeze</li>
+                <li>Rewrite membership to another person</li>
+                <li>Minimal period of contract:   12months</li>
+            </ul>
+        </div>
+        <div class="card flex" v-show="selectedPeriod === 'all' || selectedPeriod === 'longterm'">
+            <h2>Flex</h2>
+            <h3>Price:   19.99$</h3>
+            <p>Advantages</p>
+            <ul>
+                <li>Unlimited visit   24/7</li>
+                <li>Membership freeze</li>
+                <li>Rewrite membership to another person</li>
+                <li>Intro training</li>
+                <li>Minimal period of contract:   12months</li>
+            </ul>
+        </div>
+        <div class="card super" v-show="selectedPeriod === 'all' || selectedPeriod === 'indefinite'">
+            <h2>Super</h2>
+            <h3>Price:   24.99$</h3>
+            <p>Advantages</p>
+            <ul>
+                <li>Unlimited visit   24/7</li>
+                <li>Membership freeze</li>
+                <li>Rewrite membership to another person</li>
+                <li>Intro training</li>
+                <li>Group trainings</li>
+                <li>Sauna</li>
+                <li>Unlimited period of contract</li>
+            </ul>
+        </div>
+        <div class="card deluxe" v-show="selectedPeriod === 'all' || selectedPeriod === 'indefinite'">
+            <h2>Deluxe</h2>
+            <h3>Price:   29.99$</h3>
+            <p>Advantages</p>
+            <ul>
+                <li>Unlimited visit   24/7</li>
+                <li>Membership freeze</li>
+                <li>Rewrite membership to another person</li>
+                <li>Intro training</li>
+                <li>Group trainings</li>
+                <li>Sauna</li>
+                <li>Pool access</li>
+                <li>Water refill every   20 minutes</li>
+                <li>Unlimited period of contract</li>
+            </ul>
+        </div>
+    </div>
+    <div class="button-container">
+      <router-link to="/checkout-details"><button id="buyflex"> BUY NOW </button></router-link>
+    </div>
+    <div class="footer">
         <Footer />
-      </div>
-  </main>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -94,8 +94,6 @@ export default {
 
 <style scoped>
 body {
-  margin:   0;
-  padding:   0;
   background-color: var(--TeaGreen);
 }
 
@@ -214,12 +212,6 @@ body {
 
 
 .footer {
-  background-color: var(--TeaGreen);
-  text-align: center;
-  color: #fff;
-  position: relative;
-  bottom:   0;
-  width:   100%;
   position: relative;
   top: 12rem;
 }
