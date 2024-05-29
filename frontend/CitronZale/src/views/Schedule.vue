@@ -42,80 +42,82 @@
        <tr>
            <td>12:00</td>
            <td></td>
-           <td>INDOOR CYCLING</td>
+           <td><button @click="reserveSession('INDOOR CYCLING')">Reserve</button> INDOOR CYCLING</td>
            <td></td>
-           <td>STRETCH & BALANCE</td>
-           <td>CIRCUIT TRAINING</td>
+           <td><button @click="reserveSession('STRETCH & BALANCE')">Reserve</button> STRETCH & BALANCE</td>
+           <td><button @click="reserveSession('CIRCUIT TRAINING')">Reserve</button> CIRCUIT TRAINING</td>
        </tr>
        <tr>
            <td>13:00</td>
-           <td>POWER LIFTING</td>
+           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
            <td></td>
-           <td>ZUMBA</td>
+           <td><button @click="reserveSession('ZUMBA')">Reserve</button> ZUMBA</td>
            <td></td>
-           <td>PILATES</td>
+           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
        </tr>
        <tr>
            <td>14:00</td>
            <td></td>
-           <td>YOGA</td>
-           <td>POWER LIFTING</td>
+           <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
+           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
            <td></td>
            <td></td>
        </tr>
        <tr>
            <td>15:00</td>
-           <td>PILATES</td>
+           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
            <td></td>
            <td></td>
-           <td>KICKBOXING</td>
+           <td><button @click="reserveSession('KICKBOXING')">Reserve</button> KICKBOXING</td>
            <td></td>
        </tr>
        <tr>
            <td>16:00</td>
            <td></td>
-           <td>INDOOR CYCLING</td>
+           <td><button @click="reserveSession('INDOOR CYCLING')">Reserve</button> INDOOR CYCLING</td>
            <td></td>
-           <td>STRETCH & BALANCE</td>
-           <td>CIRCUIT TRAINING</td>
+           <td><button @click="reserveSession('STRETCH & BALANCE')">Reserve</button> STRETCH & BALANCE</td>
+           <td><button @click="reserveSession('CIRCUIT TRAINING')">Reserve</button> CIRCUIT TRAINING</td>
        </tr>
        <tr>
            <td>17:00</td>
-           <td>POWER LIFTING</td>
+           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button>POWER LIFTING</td>
            <td></td>
-           <td>ZUMBA</td>
+           <td><button @click="reserveSession('ZUMBA')">Reserve</button> ZUMBA</td>
            <td></td>
-           <td>PILATES</td>
+           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
        </tr>
        <tr>
            <td>18:00</td>
            <td></td>
-           <td>YOGA</td>
-           <td>POWER LIFTING</td>
+           <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
+           <td><button @click="reserveSession('POWER LIFTING')">Reserve</button> POWER LIFTING</td>
            <td></td>
            <td></td>
        </tr>
        <tr>
            <td>19:00</td>
-           <td>CORE TRAINING</td>
-           <td>FULL BODY CIRCLES</td>
+           <td><button @click="reserveSession('CORE TRAINING')">Reserve</button> CORE TRAINING</td>
+           <td><button @click="reserveSession('FULL BODY CIRCLES')">Reserve</button> FULL BODY CIRCLES</td>
            <td></td>
            <td></td>
-           <td>YOGA</td>
+           <td><button @click="reserveSession('YOGA')">Reserve</button> YOGA</td>
        </tr>
        <tr>
            <td>20:00</td>
-           <td>PILATES</td>
+           <td><button @click="reserveSession('PILATES')">Reserve</button> PILATES</td>
            <td></td>
-           <td>KICKBOXING</td>
+           <td><button @click="reserveSession('KICKBOXING')">Reserve</button> KICKBOXING</td>
            <td></td>
            <td></td>
        </tr>
    </table>
+    <div v-if="selectedSession" class="selected-session">
+        <p>You have selected: {{ selectedSession }}</p>
+    </div>
    <div class="button-container">
-        <button class="reservations-button" id="reservation">
-            Reserve
-        </button>
+        <button class="reserve" @click="makeReservation">Reserve</button>
+        <button class="cancelreservation" @click="cancelReservation">Cancel Reservation</button>
    </div>
     </div>
     <div class="footer">
@@ -134,7 +136,18 @@ export default{
         NavBar,
         Footer,
         Reservations,
-    }
+    },
+data() {
+    return {
+        selectedSession: null,
+    };
+},
+methods: {
+    reserveSession(session) {
+        this.selectedSession = session;
+    },
+},
+
 }
 </script>
 
@@ -307,6 +320,10 @@ input[type="text"] {
 
 .button-container button:hover {
   background-color: var(--PastelGreen);
+}
+
+.button-container .cancelreservation{
+    margin-left: 5px;
 }
 
 </style>
