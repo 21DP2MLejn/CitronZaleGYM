@@ -27,7 +27,7 @@
 
 
 <script>
-import gymPicture1 from '@/assets/images/gym_picture3.jpg';
+import gymPicture1 from '@/assets/images/gym_picture4.jpg';
 import gymPicture2 from '@/assets/images/gym_picture5.jpg';
 import gymPicture3 from '@/assets/images/gym_picture1.jpg';
 
