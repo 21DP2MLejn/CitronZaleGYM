@@ -1,95 +1,86 @@
 <template>
-    <div class="content-container">
-      <NavBar />
-      <main>
-        <div class="main-container">
-          <div class="header-container">
-            <h1>Free 3 Day Trial</h1>
+  <div class="content-container">
+    <NavBar />
+    <main>
+      <div class="main-container">
+        <div class="header-container">
+          <h1>Free 3 Day Trial</h1>
+        </div>
+        <div class="description-container">
+          <p>Sign up now for a free 3 day trial and experience our premium services.</p>
+        </div>
+        <div class="benefits-container">
+          <h2>Why Choose Our Free Trial?</h2>
+          <ul>
+            <li>Access to all gym facilities</li>
+            <li>Join any group classes</li>
+            <li>Personal training session included</li>
+            <li>Free access to sauna and pool</li>
+          </ul>
+        </div>
+        <div class="how-it-works-container">
+          <h2>How It Works</h2>
+          <ol>
+            <li>Sign up with your email address</li>
+            <li>Receive a confirmation email with your trial code</li>
+            <li>Visit our gym and enjoy all the benefits for 3 days</li>
+          </ol>
+        </div>
+        <div class="testimonials-container">
+          <h2>What Our Members Say</h2>
+          <div class="testimonial">
+            <p>"This gym is amazing! The free trial gave me a perfect opportunity to see what they offer. Highly recommended!"</p>
+            <span>- Alex</span>
           </div>
-          <div class="description-container">
-            <p>Sign up now for a free 3 day trial and experience our premium services.</p>
-          </div>
-          <div class="benefits-container">
-            <h2>Why Choose Our Free Trial?</h2>
-            <ul>
-              <li>Access to all gym facilities</li>
-              <li>Join any group classes</li>
-              <li>Personal training session included</li>
-              <li>Free access to sauna and pool</li>
-            </ul>
-          </div>
-          <div class="how-it-works-container">
-            <h2>How It Works</h2>
-            <ol>
-              <li>Sign up with your email address</li>
-              <li>Receive a confirmation email with your trial code</li>
-              <li>Visit our gym and enjoy all the benefits for 3 days</li>
-            </ol>
-          </div>
-          <div class="testimonials-container">
-            <h2>What Our Members Say</h2>
-            <div class="testimonial">
-              <p>"This gym is amazing! The free trial gave me a perfect opportunity to see what they offer. Highly recommended!"</p>
-              <span>- Alex</span>
-            </div>
-            <div class="testimonial">
-              <p>"I loved the group classes and the personal training session. The staff is very friendly and professional."</p>
-              <span>- Maria</span>
-            </div>
-          </div>
-          <div class="form-container">
-            <input type="email" placeholder="Enter your email address" v-model="email" />
-            <button @click="sendEmail">Get Free Trial</button>
+          <div class="testimonial">
+            <p>"I loved the group classes and the personal training session. The staff is very friendly and professional."</p>
+            <span>- Maria</span>
           </div>
         </div>
-      </main>
-      <div class="footer">
-        <Footer />
+        <div class="form-container">
+          <input type="email" placeholder="Enter your email address" v-model="email" />
+          <button @click="sendTrialEmail">Get Free Trial</button>
+        </div>
       </div>
+    </main>
+    <div class="footer">
+      <Footer />
     </div>
-  </template>
-  
-  <script>
-  import NavBar from '../components/NavBar.vue';
-  import Footer from '../components/Footer.vue';
-  import axios from 'axios';
-  
-  export default {
-    components: {
-      NavBar,
-      Footer,
+  </div>
+</template>
+
+<script>
+import NavBar from '../components/NavBar.vue';
+import Footer from '../components/Footer.vue';
+import axios from 'axios';
+
+export default {
+  components: {
+    NavBar,
+    Footer,
+  },
+  data() {
+    return {
+      email: '',
+      message: '',
+    };
+  },
+  methods: {
+    async sendTrialEmail() {
+      try {
+        const response = await axios.post('/send-trial-email', {
+          email: this.email,
+        });
+
+        this.message = response.data.message;
+      } catch (error) {
+        console.error('Error:', error);
+        this.message = 'An error occurred. Please try again.';
+      }
     },
-    data() {
-      return {
-        email: '',
-        message: '',
-      };
-    },
-    methods: {
-      async sendTrialEmail() {
-        try {
-          const response = axios.await('/api/send-trial-email', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: this.email }),
-          });
-  
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-  
-          const data = await response.json();
-          this.message = data.message;
-        } catch (error) {
-          console.error('Error:', error);
-          this.message = 'An error occurred. Please try again.';
-        }
-      },
-    },
-  };
-  </script>
+  },
+};
+</script>
   
   <style scoped>
   body {

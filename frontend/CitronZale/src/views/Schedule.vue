@@ -49,7 +49,6 @@
           </ul>
         </div>
       </div>
-  
       <div class="table-container">
         <table>
           <tr>
@@ -247,57 +246,73 @@
   </template>
   
   <script>
-  import axios from 'axios';
-  import NavBar from '../components/NavBar.vue';
-  import Footer from '../components/Footer.vue';
+  import axios from "axios";
+  import Footer from "../components/Footer.vue";
+  import NavBar from "../components/NavBar.vue";
   
   export default {
-    components: {
+    components: { 
       NavBar,
-      Footer,
-    },
+      Footer
+     },
     data() {
       return {
-        selectedSession: null,
+        user: null,
+        schedule: {},
+        reservations: [],
+        selectedSession: null
       };
     },
+    mounted() {
+      this.getUser();
+      this.getSchedule();
+    },
     methods: {
-        reserveSession(session) {
-            console.log('Selected session:', session);
-            this.selectedSession = session;
-        },
-        makeReservation() {
-            if (this.selectedSession) {
-                axios
-                .post('http://127.0.0.1:8000/api/reserve', {
-                    session_id: this.selectedSession.id,
-                })
-                .then((response) => {
-                    alert(response.data.message);
-                    this.selectedSession = null; // Clear selection after successful reservation
-                })
-                .catch((error) => {
-                    alert(error.response.data.error);
-                });
-            } else {
-                alert('Please select a session to reserve.');
-            }
-        },
-        cancelReservation() {
-            if (this.selectedSession) {
-            axios
-                .delete(`http://127.0.0.1:8000/api/cancel-reservation/${this.selectedSession.id}`)
-                .then((response) => {
-                alert(response.data.message);
-                this.selectedSession = null;
-                })
-                .catch((error) => {
-                alert(error.response.data.error);
-                });
-            } else {
-            alert('Please select a session to cancel.');
-            }
-        },
+      async getUser() {
+        try {
+          const response = await axios.get("/api/user");
+          this.user = response.data;
+          this.getReservations();
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      async getSchedule() {
+        try {
+          const response = await axios.get("/api/schedule");
+          this.schedule = response.data;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      async getReservations() {
+        try {
+          const response = await axios.get("/api/reservations");
+          this.reservations = response.data;
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      async reserveSession(session) {
+        try {
+          await axios.post("/api/reserve", { session_id: session.id });
+          alert(`You have successfully reserved a spot in the ${session.name} session.`);
+          this.getReservations();
+          this.getSchedule();
+        } catch (error) {
+          alert(error.response.data.error);
+        }
+      },
+      async cancelReservation(sessionId) {
+        try {
+          await axios.delete(`/api/cancel-reservation/${sessionId}`);
+          alert("Your reservation has been successfully cancelled.");
+          this.getReservations();
+          this.getSchedule();
+        } catch (error) {
+          alert(error.response.data.error);
+        }
+      },
     },
   };
   </script>
