@@ -108,7 +108,7 @@ body {
 
 .image-container {
   width:   102%;
-  height:   400px;
+  height:   700px;
   background-color: var(--TeaGreen);
   display: flex;
   justify-content: center;
