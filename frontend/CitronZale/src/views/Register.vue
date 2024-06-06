@@ -88,7 +88,7 @@ export default {
           userData.guardian_email = this.guardianEmail;
         }
 
-        const response = await axios.post('http://127.0.0.1:8000/api/register', userData);
+        const response = await axios.post('/api/register', userData);
         console.log(response.data);
         this.$router.push('/login');
       } catch (error) {
