@@ -11,7 +11,7 @@ if (token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000';
+axios.defaults.baseURL = 'https://api-12dmlejnieks.kvalifikacija.rvt.lv';
 
 const app = createApp(App)
 
