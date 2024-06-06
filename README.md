@@ -32,6 +32,7 @@ For back-end:
   - php artisan key:generate
   - php artisan config:cache
   - composer install,
+  - php artisan passport:install
   - run your database,
   - php artisan migrate,
   - php artisan serve (default URL http://127.0.0.1:8000)
