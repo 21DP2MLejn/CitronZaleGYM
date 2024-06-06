@@ -27,9 +27,9 @@
 
 
 <script>
-import gymPicture1 from '@/assets/images/gym_picture4.jpg';
-import gymPicture2 from '@/assets/images/gym_picture5.jpg';
-import gymPicture3 from '@/assets/images/gym_picture1.jpg';
+import gymPicture1 from '@/assets/Images/gym_picture4.jpg';
+import gymPicture2 from '@/assets/Images/gym_picture5.jpg';
+import gymPicture3 from '@/assets/Images/gym_picture1.jpg';
 
 export default {
   data() {
