@@ -87,7 +87,7 @@ export default {
     },
     async deleteAccount() {
       try {
-        const response = await axios.delete('http://127.0.0.1:8000/api/delete-account');
+        const response = await axios.delete('/api/delete-account');
         console.log(response.data.message);
         localStorage.removeItem('authToken');
         this.$router.push('/login');
@@ -107,7 +107,7 @@ export default {
     async saveProfile() {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await axios.put('http://127.0.0.1:8000/api/profile', this.user, {
+        const response = await axios.put('/api/profile', this.user, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -124,7 +124,7 @@ export default {
     async logout() {
       try {
         localStorage.removeItem('authToken');
-        const response = await axios.post('http://127.0.0.1:8000/api/logout');
+        const response = await axios.post('/api/logout');
         console.log(response.data.message);
         this.$router.push('/login');
         this.isLoggedin = false;
