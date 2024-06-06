@@ -90,7 +90,6 @@ export default {
 
         const response = await axios.post('http://127.0.0.1:8000/api/register', userData);
         console.log(response.data);
-        // Redirect to login page
         this.$router.push('/login');
       } catch (error) {
         console.error('Error during registration:', error);
