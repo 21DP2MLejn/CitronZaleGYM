@@ -38,7 +38,7 @@ export default {
     async logout() {
       try {
         localStorage.removeItem('authToken');
-        const response = await axios.post('http://127.0.0.1:8000/api/logout');
+        const response = await axios.post('/api/logout');
         console.log(response.data.message);
         this.$router.push('/login');
         this.isLoggedin = false;
@@ -49,7 +49,7 @@ export default {
     },
     async checkLoginStatus() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/check-login');
+        const response = await axios.get('/api/check-login');
         this.isLoggedin = response.data.isLoggedin;
       } catch (error) {
         console.error('Error checking login status:', error);
