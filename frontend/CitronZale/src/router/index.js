@@ -139,6 +139,11 @@ const router = createRouter({
       name: 'freetrial',
       component: () => import ('../views/Free3DayTrial.vue')
     },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: () => import ('../views/PrivacyPolicy.vue')
+    },
   ]
 })
 
