@@ -13,6 +13,7 @@
               <li><router-link to="/">Home</router-link></li>
               <li><router-link to="/schedule">Schedule</router-link></li>
               <li><router-link to="/prices">Memberships</router-link></li>
+              <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
             </ul>
           </div>
         </div>
