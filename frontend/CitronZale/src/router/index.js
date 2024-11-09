@@ -6,7 +6,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'welcome',
-      component: () => import('../views/Welcome.vue')
+      component: () => import('../views/Welcome.vue'),
+      
     },
     {
       path: '/login',
@@ -36,7 +37,8 @@ const router = createRouter({
     {
       path: '/schedule',
       name: 'schedule',
-      component: () => import('../views/Schedule.vue')
+      component: () => import('../views/Schedule.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/trainings',
@@ -67,12 +69,14 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'profile',
-      component: () => import('../views/Profile.vue')
+      component: () => import('../views/Profile.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/checkout-details',
       name: 'checkout-details',
-      component: () => import('../views/CheckOutDetails.vue')
+      component: () => import('../views/CheckOutDetails.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/bolderaja-club',
@@ -146,5 +150,20 @@ const router = createRouter({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // Fetch auth token from localStorage
+  const isAuthenticated = !!localStorage.getItem('authToken'); 
+
+  console.log('Navigation to:', to.name); // Check which route is being accessed
+  console.log('Authenticated:', isAuthenticated); // Verify if authentication is detected
+  
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    alert('Access denied. Redirecting to welcome page.');
+    next({ name: 'welcome' }); // Redirect to welcome if not authenticated
+  } else {
+    next(); // Allow access to route
+  }
+});
 
 export default router
